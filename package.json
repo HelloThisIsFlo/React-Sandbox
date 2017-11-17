@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "material-ui": "^0.18.4",
+    "plotly.js": "^1.31.2",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
+    "react-plotlyjs-ts": "^1.1.1",
     "react-scripts-ts": "2.8.0",
     "react-tap-event-plugin": "^3.0.2"
   },
@@ -16,6 +18,7 @@
     "eject": "react-scripts-ts eject"
   },
   "devDependencies": {
+    "@types/plotly.js": "^1.28.9",
     "@types/enzyme": "^3.1.4",
     "@types/enzyme-adapter-react-16": "^1.0.1",
     "@types/jest": "^21.1.6",

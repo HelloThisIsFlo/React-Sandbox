@@ -1,12 +1,36 @@
 import * as React from 'react';
 import './Sandbox.css';
 import Hello from '../helloworld/Hello';
-// import * as Bootstrap from 'react-bootstrap';
 import RaisedButton from 'material-ui/RaisedButton';
+import PlotlyChart from 'react-plotlyjs-ts';
 
 export default Sandbox;
 
-// Bootstrap.CarouselItem().alert.
+const trace1 = {
+    x: [1999, 2000, 2001, 2002],
+    y: [10, 15, 13, 17],
+    type: 'scatter'
+};
+const trace2 = {
+    x: [1999, 2000, 2001, 2002],
+    y: [16, 5, 11, 9],
+    type: 'scatter'
+};
+
+const data = [trace1, trace2];
+
+const layout = {
+    title: 'Sales Growth',
+    xaxis: {
+        title: 'Year',
+        showgrid: false,
+        zeroline: false
+    },
+    yaxis: {
+        title: 'Percent',
+        showline: false
+    }
+};
 
 const sandboxPage = (
     <div className="container">
@@ -19,9 +43,7 @@ const sandboxPage = (
             <RaisedButton label="Default" />
         </div>
         <div className="row justify-content-center">
-            <div itemType="button" className="btn btn-lg btn-primary" id="mainButton">
-                Button
-            </div>
+            <PlotlyChart data={data} layout={layout}/>
         </div>
     </div>
 );
