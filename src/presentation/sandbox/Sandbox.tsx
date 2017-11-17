@@ -2,6 +2,7 @@ import * as React from 'react';
 import './Sandbox.css';
 import Hello from '../helloworld/Hello';
 import RaisedButton from 'material-ui/RaisedButton';
+import Slider from 'material-ui/Slider';
 import PlotlyChart from 'react-plotlyjs-ts';
 
 export default Sandbox;
@@ -39,14 +40,23 @@ const sandboxPage = (
                 <Hello name="Test" enthusiasmLevel={10} />
             </div>
         </div>
+        <div className="row justify-content-center" id="plot">
+            <PlotlyChart data={data} layout={layout}/>
+        </div>
+        <div className="row justify-content-center">
+            <div className="col-10">
+                <Slider onChange={handleSlider}/>
+            </div>
+        </div>
         <div className="row justify-content-center">
             <RaisedButton label="Default" />
         </div>
-        <div className="row justify-content-center">
-            <PlotlyChart data={data} layout={layout}/>
-        </div>
     </div>
 );
+
+function handleSlider(event: {}, value: number) {
+    console.log(value);
+}
 
 function Sandbox() {
     return sandboxPage;

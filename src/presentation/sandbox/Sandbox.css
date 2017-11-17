@@ -1,12 +1,17 @@
 * {
     /* border: solid red 1px; */
+    font-family: 'Roboto', sans-serif;
 }
 
 #mainTitle {
-    margin-top: 50px;
-    margin-bottom: 25px;
+    margin-top: 25px;
+    /* display: none; */
 }
 
 #mainButton {
-    font-family: 'Roboto', sans-serif;
+}
+
+
+#plot {
+    margin-bottom: 25px;
 }
