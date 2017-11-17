@@ -15,7 +15,9 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true
+
+    // Remove warning when not using a import
+    "noUnusedLocals": false
   },
   "exclude": [
     "node_modules",
