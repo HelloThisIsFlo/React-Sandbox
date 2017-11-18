@@ -2,39 +2,39 @@ import * as React from 'react';
 import './Sandbox.css';
 import Hello from '../helloworld/Hello';
 import RaisedButton from 'material-ui/RaisedButton';
-import Slider from 'material-ui/Slider';
+import Multislider, { MultisliderValues } from '../multislider/Multislider';
 import PlotlyChart from 'react-plotlyjs-ts';
+import * as update from 'immutability-helper';
+
 export interface SandboxProps {
 }
 export interface SandboxState {
-    val: number;
+    firstMultislider: MultisliderValues;
 }
 class Sandbox extends React.Component<SandboxProps, SandboxState> {
 
     data: Array<{}>;
     layout: {};
 
-    componentDidMount() {
-        if (this.state.val < 20) {
-            // setInterval(
-            //     () => this.setState({val: this.state.val + 0.1}), 
-            //     10
-            // );
-        }
-    }
-
     constructor(props: SandboxProps) {
         super(props);
 
         this.state = {
-            val: 0
+            firstMultislider: {
+                value1: 0,
+                value2: 0,
+                value3: 0
+            }
         };
 
-        this.handleSlider = this.handleSlider.bind(this);
-        this.resetValue = this.resetValue.bind(this);
+        this.handleFirstMultislider = this.handleFirstMultislider.bind(this);
     }
 
     refreshPlotData() {
+        const fakeVal1 = this.state.firstMultislider.value1 * 20;
+        const fakeVal2 = this.state.firstMultislider.value2 * 20;
+        const fakeVal3 = this.state.firstMultislider.value3 * 20;
+
         const trace1 = {
             x: [1999, 2000, 2001, 2002],
             y: [10, 15, 13, 17],
@@ -42,7 +42,7 @@ class Sandbox extends React.Component<SandboxProps, SandboxState> {
         };
         const trace2 = {
             x: [1999, 2000, 2001, 2002],
-            y: [16, this.state.val, 11, 9],
+            y: [16, fakeVal1, fakeVal2, fakeVal3],
             type: 'scatter'
         };
         this.data = [trace1, trace2];
@@ -61,11 +61,16 @@ class Sandbox extends React.Component<SandboxProps, SandboxState> {
         };
     }
 
-    handleSlider(_event: {}, val: number) {
-        this.setState({val: val * 20});
-    }
-    resetValue(_event: {}) {
-        this.setState({val: 0});
+    handleFirstMultislider(val: MultisliderValues) {
+        const newState = update(this.state, {
+            firstMultislider: {
+                value1: {$set: val.value1},
+                value2: {$set: val.value2},
+                value3: {$set: val.value3},
+            }
+        });
+        console.log('handle multislider');
+        this.setState(newState);
     }
 
     render() {
@@ -81,12 +86,15 @@ class Sandbox extends React.Component<SandboxProps, SandboxState> {
                     <PlotlyChart data={this.data} layout={this.layout}/>
                 </div>
                 <div className="row justify-content-center">
-                    <div className="col-10">
-                        <Slider value={this.state.val / 20} onChange={this.handleSlider}/>
+                    <div className="col-6">
+                        <Multislider value={this.state.firstMultislider} onChange={this.handleFirstMultislider} />
+                    </div>
+                    <div className="col-6">
+                        <Multislider value={this.state.firstMultislider} onChange={this.handleFirstMultislider} />
                     </div>
                 </div>
                 <div className="row justify-content-center">
-                    <RaisedButton label="Default" onClick={this.resetValue} />
+                    <RaisedButton label="Default" />
                 </div>
             </div>
         );
