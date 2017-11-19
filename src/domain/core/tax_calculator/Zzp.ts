@@ -32,7 +32,6 @@ export class GrossToNetZzp implements GrossToNet {
 
 
 
-
 export class RunningCostsZzp implements RunningCosts {
     calculateRunningCosts(grossYearly: number): number {
         throw new Error('Not implemented yet !!');
