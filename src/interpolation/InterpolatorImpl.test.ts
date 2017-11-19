@@ -8,7 +8,7 @@ describe('Spline interpolator', () => {
         splineInterpolator = new SplineInterpolator();
     });
 
-    describe('2 values', () => {
+    describe('2 values: x => x', () => {
 
         var interpolatedFunction: InterpolatedFunction;
         var points = [
@@ -21,7 +21,12 @@ describe('Spline interpolator', () => {
         });
 
         test('initial values correctly interpolated', () => {
-            var y = 2;
+            assertIntersection(points[0], interpolatedFunction);
+            assertIntersection(points[1], interpolatedFunction);
+        });
+
+        test('3 => 3', () => {
+            assertIntersection({x: 3, y: 3}, interpolatedFunction);
         });
 
         /**
@@ -33,7 +38,7 @@ describe('Spline interpolator', () => {
             const expectedY = point.y;
             const margin = 0.05 * expectedY;
 
-            const interpolatedY = func.apply(point.x);
+            const interpolatedY = func(point.x);
 
             expect(interpolatedY).toBeLessThanOrEqual(expectedY + margin);
             expect(interpolatedY).toBeGreaterThanOrEqual(expectedY - margin);

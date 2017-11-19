@@ -2,6 +2,6 @@ import Interpolator, { InterpolatedFunction, Point } from '../domain/interface/I
 
 export class SplineInterpolator implements Interpolator {
     guessFunction(interpolationPoints: Point[]): InterpolatedFunction {
-        throw new Error('Method not implemented.');
+        return x => x;
     }
 }
