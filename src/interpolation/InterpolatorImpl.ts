@@ -11,7 +11,11 @@ export class SplineInterpolator implements Interpolator {
         const pts = interpolationPoints
             .map(this.mapToSmoothPointType);
 
-        const path: SmoothPath = smooth(pts, { method: 'cubic' });
+        const path: SmoothPath = smooth(pts, { 
+            method: 'lanczos',
+            lanczosFilterSize: 5
+            // cubicTension: 0.2
+        });
 
         return smoothPathConverter(path, pts.length);
     }
