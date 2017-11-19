@@ -29,7 +29,7 @@ export interface RunningCosts {
 export interface HealthInsurance {
     calculateHealthInsuranceCosts(grossYearly: number): number;
 }
-interface TaxableAmount extends Number {}
+type TaxableAmount = number;
 export interface Deductions {
     calculateTaxableAmount(grossYearly: number): TaxableAmount;
 }
