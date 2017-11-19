@@ -1,6 +1,6 @@
 import Interpolator, { InterpolatedFunction, Point } from '../domain/interface/Interpolator';
 import { SplineInterpolator } from './InterpolatorImpl';
-describe('Spline interpolator', () => {
+describe.skip('Spline interpolator', () => {
 
     var splineInterpolator: Interpolator;
 
