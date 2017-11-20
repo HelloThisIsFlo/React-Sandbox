@@ -4,7 +4,7 @@ import { GrossToNetDividende30Ruling } from './tax_calculator/Dividende30Ruling'
 const zzpGtN = new GrossToNetZzp();
 const div30GtN = new GrossToNetDividende30Ruling();
 
-test('Sandbox', () => {
+test.skip('Sandbox', () => {
 
     const grossValues = [];
     for (var i = 10000; i <= 70000; i += 2000) {
