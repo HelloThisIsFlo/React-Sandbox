@@ -43,7 +43,7 @@ export class GrossToNetZzp implements GrossToNet {
     }
 
     calculateNetYearly(grossYearly: number): number {
-        if (grossYearly <= 24000) { return 0; }
+        if (grossYearly <= 24000) { return grossYearly; }
 
         const fromExternalMapping =
             this.externalMapping

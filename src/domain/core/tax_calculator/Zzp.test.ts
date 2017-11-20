@@ -15,7 +15,8 @@ describe('Gross to Net', () => {
     });
 
     test('Below 24000 -> Not taxes', () => {
-        assertGrossToNet(24000, 0);
+        assertGrossToNet(10000, 10000);
+        assertGrossToNet(24000, 24000);
     });
 
     test('Fixed values from external calculator', () => {
