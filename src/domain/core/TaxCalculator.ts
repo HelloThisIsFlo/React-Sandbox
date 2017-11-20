@@ -20,6 +20,7 @@ export default interface TaxCalculator {
     netAfterZZP(moneyMade: number): number;
 }
 
+export type Percent = number;
 export interface GrossToNet {
     calculateNetYearly(grossYearly: number): number;
 }

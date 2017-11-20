@@ -1,12 +1,8 @@
-import TaxCalculator from './TaxCalculator';
+import TaxCalculator from '../core/TaxCalculator';
 
-export interface YearDataIncome {
-    moneyMade: number;
-}
-export interface YearDataResult {
-    netOnAccount: number;
-}
-export interface TaxService {
+export type YearDataIncome = { moneyMade: number; };
+export type YearDataResult = { netOnAccount: number; };
+export default interface TaxService {
     simulation8Years(moneyMadeEachYeah: YearDataIncome[]): YearDataResult[];
 }
 

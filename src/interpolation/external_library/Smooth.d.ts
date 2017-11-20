@@ -1,4 +1,3 @@
-type SmoothPoint = [number, number];
 
 /**
  * SmoothPath is not directly a function: x -> f(x) but a description of a Path.
@@ -30,6 +29,7 @@ type SmoothPoint = [number, number];
  * Finally: f(3) = SmoothPath(Progress_3)[1] = SmoothPath(1/4)[1] = [ 3, 3 ][1] = 3
  *                                        ^-- to keep only the 'y' component.
  */
+type SmoothPoint = [number, number];
 export type SmoothPath = (progressOnPath: number) => SmoothPoint;
 export type Smooth = (values: SmoothPoint[], config: {}) => SmoothPath;
 

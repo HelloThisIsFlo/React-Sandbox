@@ -70,13 +70,13 @@ describe('SmoothPath Converter', () => {
             });
         });
 
-        test('First segment', () => {
+        test('First segment: x => 2x', () => {
             expect(f(3)).toBeCloseTo(6, 0);
             expect(f(3.5)).toBeCloseTo(7, 0);
             expect(f(2.1)).toBeCloseTo(4.2, 0);
         });
 
-        test('Second segment', () => {
+        test('Second segment: x => 0.5x + a', () => {
             assert(f(6)).almostEqual(6 * 0.5 + 6);
             assert(f(4.1)).almostEqual(4.1 * 0.5 + 6);
         });
