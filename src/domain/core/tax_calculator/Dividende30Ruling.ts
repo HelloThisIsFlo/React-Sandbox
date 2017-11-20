@@ -25,7 +25,7 @@ export class GrossToNetDividende30Ruling implements GrossToNet {
         const taxable = this.minus30Percent(grossYearly);
 
         if (taxable <= this.minTaxSalary) {
-            return this.netForMinTaxSalary;
+            throw `${grossYearly} is below the minimum amount for this scheme`;
         } else {
             return this.applyDividendStrategy(grossYearly);
         }

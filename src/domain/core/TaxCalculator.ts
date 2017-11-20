@@ -12,12 +12,12 @@ export default interface TaxCalculator {
     /**
      * Calculations for: The 30%ruling + dividende scheme
      */
-    netAfter30RulingAndDividende(moneyMade: number): number;
+    moneyLeftAfter30RulingAndDividende(moneyMade: number): number;
 
     /**
      * Calculations for: As ZZP
      */
-    netAfterZZP(moneyMade: number): number;
+    moneyLeftAfterZZP(moneyMade: number): number;
 }
 
 export type Percent = number;

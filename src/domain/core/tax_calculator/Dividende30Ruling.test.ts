@@ -3,6 +3,17 @@ import { GrossToNetDividende30Ruling, DividendTax, ProfitTax } from './Dividende
 import { Point } from '../../interface/Interpolator';
 
 describe('Gross to Net', () => {
+    /*
+    TODO: PUT THIS SOMEWHERE ELSE
+
+    With this scheme, if the salary is < 53k we're basically wasting money.
+    Because for it to work the taxable income AFTER the 30% were removed needs to be 
+    37k. Which is equivalentto 53k BEFORE 30%.
+
+    Anything below and we'll still pay taxes on the 37k.
+
+    For the sake of clarity
+    */
 
     const minTaxable = 37000;
     const grossForMinTaxable = minTaxable / (1 - 0.3);
@@ -28,37 +39,37 @@ describe('Gross to Net', () => {
 
     const grossToNet: GrossToNet = new GrossToNetDividende30Ruling();
 
-    test('Below Minimum (approx 53K) => Charge taxes for (approx) 53K anyway', () => {
+    test('Below Minimum (approx 53K) => Error', () => {
         /*
-        With this scheme, if the salary is < 53k we're basically wasting money.
-        Because for it to work the taxable income AFTER the 30% were removed needs to be 
-        37k. Which is equivalentto 53k BEFORE 30%.
+        This scheme only works if the SALARY is < minimum (~=53k) !!
 
-        Anything below and we'll still pay taxes on the 37k.
+        The money made in a year might be less. But the gross -> net is always in regards to the salary.
+        Since the salary can not be lower that the minimum ==> Error
         */
 
-        assertGross(10000).givesNet(netForMinTaxable);
-        assertGross(15000).givesNet(netForMinTaxable);
-        assertGross(25000).givesNet(netForMinTaxable);
-        assertGross(grossForMinTaxable).givesNet(netForMinTaxable);
+        function assertInvalidGross(gross: number) {
+            expect(() => grossToNet.calculateNetYearly(gross))
+                .toThrowError(`${gross} is below the minimum amount for this scheme`);
+        }
+
+        [10000, 20000, 24000, 52000]
+            .map(assertInvalidGross);
     });
 
-    describe('Above minimum', () => {
-        test('Apply dividende scheme', () => {
-            /*
-            If above minimum (~=53k) 
-            --> Only apply tax for ~=53k and give the rest as dividend.
-            */
+    describe('Above minimum => Apply dividende scheme', () => {
+        /*
+        If above minimum (~=53k) 
+        --> Only apply tax for ~=53k and give the rest as dividend.
+        */
 
-            const gross = 70000;
-            const dividend = gross - grossForMinTaxable;
-            const dividendAfterProfitTax = applyTax(dividend, profitTax.under200k);
-            const dividendNet = applyTax(dividendAfterProfitTax, dividendTax.whenIn30Ruling);
+        const gross = 70000;
+        const dividend = gross - grossForMinTaxable;
+        const dividendAfterProfitTax = applyTax(dividend, profitTax.under200k);
+        const dividendNet = applyTax(dividendAfterProfitTax, dividendTax.whenIn30Ruling);
 
-            const expectedNet = dividendNet + netForMinTaxable;
+        const expectedNet = dividendNet + netForMinTaxable;
 
-            assertGross(gross).givesNet(expectedNet);
-        });
+        assertGross(gross).givesNet(expectedNet);
     });
 
     function applyTax(value: number, tax: Percent) {
