@@ -1,6 +1,6 @@
 import makeSelectable from 'material-ui/List/makeSelectable';
-import { GrossToNet } from '../TaxCalculator';
-import { GrossToNetZzp } from './Zzp';
+import { GrossToNet } from '../../TaxCalculator';
+import GrossToNetZzp from './GrossToNet';
 
 describe('Gross to Net', () => {
 

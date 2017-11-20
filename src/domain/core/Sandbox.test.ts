@@ -1,5 +1,5 @@
-import { GrossToNetZzp } from './tax_calculator/Zzp';
-import { GrossToNetDividende30Ruling } from './tax_calculator/Dividende30Ruling';
+import GrossToNetDividende30Ruling from './tax_calculator/div30Ruling/GrossToNet';
+import GrossToNetZzp from './tax_calculator/zzp/GrossToNet';
 
 const zzpGtN = new GrossToNetZzp();
 const div30GtN = new GrossToNetDividende30Ruling();

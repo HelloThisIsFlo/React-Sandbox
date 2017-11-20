@@ -16,7 +16,7 @@ const profitTax: ProfitTax = {
     under200k: 20,
     over200k: 25
 };
-export class GrossToNetDividende30Ruling implements GrossToNet {
+export default class GrossToNetDividende30Ruling implements GrossToNet {
 
     private minTaxSalary = 37000;
     private netForMinTaxSalary = 43203;

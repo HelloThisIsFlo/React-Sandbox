@@ -1,6 +1,5 @@
-import { GrossToNet, Percent } from '../TaxCalculator';
-import { GrossToNetDividende30Ruling, DividendTax, ProfitTax } from './Dividende30Ruling';
-import { Point } from '../../interface/Interpolator';
+import GrossToNetDividende30Ruling, { DividendTax, ProfitTax } from './GrossToNet';
+import { GrossToNet, Percent } from '../../TaxCalculator';
 
 describe('Gross to Net', () => {
     /*

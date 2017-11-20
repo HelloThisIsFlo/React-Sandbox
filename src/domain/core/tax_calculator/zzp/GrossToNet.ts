@@ -1,8 +1,8 @@
-import { Deductions, GrossToNet, HealthInsurance, RunningCosts } from '../TaxCalculator';
-import Interpolator, { InterpolatedFunction } from '../../interface/Interpolator';
-import { SplineInterpolator } from '../../../interpolation/InterpolatorImpl';
+import { GrossToNet, RunningCosts, HealthInsurance, Deductions } from '../../TaxCalculator';
+import { SplineInterpolator } from '../../../../interpolation/InterpolatorImpl';
+import Interpolator, { InterpolatedFunction } from '../../../interface/Interpolator';
 
-export class GrossToNetZzp implements GrossToNet {
+export default class GrossToNetZzp implements GrossToNet {
 
     interpolator: Interpolator = new SplineInterpolator(); // todo inject
 
