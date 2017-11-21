@@ -12,13 +12,10 @@ describe('Gross to Net', () => {
         incomeTaxZzp = incomeTaxFactoryZzp(interpolator);
     });
 
-    test('0 income', () => {
-        assertGrossToNet(0, 0);
-    });
-
     test('Below 24000 -> Not taxes', () => {
-        assertGrossToNet(10000, 10000);
-        assertGrossToNet(24000, 24000);
+        expectGross(0).returnsIncomeTax(0);
+        expectGross(10000).returnsIncomeTax(0);
+        expectGross(24000).returnsIncomeTax(0);
     });
 
     test('Fixed values from external calculator', () => {
@@ -27,34 +24,35 @@ describe('Gross to Net', () => {
         You can find it here: 
         https://www.ikwordzzper.nl/zzp-stappenplan/handige-hulpmiddelen/netto-besteedbaar-inkomen-calculator-zzp
         */
-
-        // assertGrossToNet(24000, 23445);
-        assertGrossToNet(25000, 24084);
-        assertGrossToNet(28000, 26002);
-        assertGrossToNet(32000, 28443);
-        assertGrossToNet(38000, 31612);
-        assertGrossToNet(42000, 33715);
-        assertGrossToNet(46000, 35817);
-        assertGrossToNet(48000, 36868);
-        assertGrossToNet(50000, 37919);
-        assertGrossToNet(55000, 35501);
-        assertGrossToNet(60000, 38129);
-        assertGrossToNet(70000, 43384);
-        assertGrossToNet(100000, 59753);
-        assertGrossToNet(120000, 70089);
+        expectGross(25000).returnsIncomeTax(916);
+        expectGross(28000).returnsIncomeTax(1998);
+        expectGross(32000).returnsIncomeTax(3557);
+        expectGross(38000).returnsIncomeTax(6388);
+        expectGross(42000).returnsIncomeTax(8285);
+        expectGross(46000).returnsIncomeTax(10183);
+        expectGross(48000).returnsIncomeTax(11132);
+        expectGross(50000).returnsIncomeTax(12081);
+        expectGross(55000).returnsIncomeTax(19499);
+        expectGross(60000).returnsIncomeTax(21871);
+        expectGross(70000).returnsIncomeTax(26616);
+        expectGross(100000).returnsIncomeTax(40247);
+        expectGross(120000).returnsIncomeTax(49911);
     });
 
-    /**
-     * Assert if result is approximately correct.
-     * The calculator doesn't need to be super precise so an approximation will do.
-     */
-    function assertGrossToNet(gross: number, expectedNet: number) {
-        // +/- the range in percent will be considered ok;
+    function expectGross(gross: number) {
         const acceptableRangePercent = 1.5;
-        const net = incomeTaxZzp(gross);
-        const margin = acceptableRangePercent / 100 * expectedNet;
-        expect(net).toBeLessThanOrEqual(expectedNet + margin);
-        expect(net).toBeGreaterThanOrEqual(expectedNet - margin);
+        return {
+            /**
+             * Assert if result is approximately correct.
+             * The calculator doesn't need to be super precise so an approximation will do.
+             */
+            returnsIncomeTax: function (expectedIncomeTax: number) {
+                // +/- the range in percent will be considered ok;
+                const incomeTax = incomeTaxZzp(gross);
+                const margin = acceptableRangePercent / 100 * expectedIncomeTax;
+                expect(incomeTax).toBeLessThanOrEqual(expectedIncomeTax + margin);
+                expect(incomeTax).toBeGreaterThanOrEqual(expectedIncomeTax - margin);
+            }
+        };
     }
-
 });

@@ -38,15 +38,17 @@ export default function incomeTaxFactoryZzp(interpolator: Interpolator): IncomeT
     );
 
     function incomeTax(grossYearly: number): number {
-        if (grossYearly <= 24000) { return grossYearly; }
+        if (grossYearly <= 24000) { return 0; }
 
         const fromExternalMapping =
             externalMapping
                 .find((value) => value.gross === grossYearly);
 
-        return fromExternalMapping ?
+        const net = fromExternalMapping ?
             fromExternalMapping.net :
             calculateInterpolatedValue(grossYearly);
+
+        return grossYearly - net;
     }
 
     function calculateInterpolatedValue(grossYearly: number): number {

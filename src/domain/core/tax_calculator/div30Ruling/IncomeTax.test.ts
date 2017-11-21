@@ -55,7 +55,7 @@ describe('Gross to Net', () => {
             .map(assertInvalidGross);
     });
 
-    describe('Above minimum => Apply dividende scheme', () => {
+    test('Above minimum => Apply dividende scheme', () => {
         /*
         If above minimum (~=53k) 
         --> Only apply tax for ~=53k and give the rest as dividend.
@@ -66,9 +66,10 @@ describe('Gross to Net', () => {
         const dividendAfterProfitTax = applyTax(dividend, profitTax.under200k);
         const dividendNet = applyTax(dividendAfterProfitTax, dividendTax.whenIn30Ruling);
 
-        const expectedNet = dividendNet + netForMinTaxable;
 
-        assertGross(gross).givesNet(expectedNet);
+        const expectedIncomeTax = gross - netForMinTaxable - dividendNet;
+
+        assertGross(gross).givesNet(expectedIncomeTax);
     });
 
     function applyTax(value: number, tax: Percent) {

@@ -15,11 +15,27 @@ const profitTax: ProfitTax = {
     under200k: 20,
     over200k: 25
 };
+/**
+ * Create a IncomeTax calculator for the Dividende & 30% ruling scheme.
+ */
 export default function incomeTaxDiv30Ruling(): IncomeTax {
 
     const minTaxSalary = 37000;
     const netForMinTaxSalary = 43203;
 
+    /**
+     * The 'IncomeTax' in the case of the Dividende & 30% ruling corresponds to 
+     * the difference between:
+     * - The total gross ammount received on personal account 
+     *   * Minimum: 53k in raw salary
+     *   * Above: 53K + rest in dividendes
+     * - The total net ammount left on personal account 
+     * 
+     * That correspond to a "equivalent" Income Tax. 
+     * But is really a mix of 'Income Tax', 'Profit Tax' and 'Dividende Tax'.
+     * 
+     * @param grossYearly 
+     */
     const incomeTax: IncomeTax = function (grossYearly: number): number {
         const taxable = minus30Percent(grossYearly);
 
@@ -41,7 +57,8 @@ export default function incomeTaxDiv30Ruling(): IncomeTax {
         const dividend = grossYearly - grossForMinTaxable;
         const dividendAfterProfitTax = applyTax(dividend, profitTax.under200k);
         const dividendNet = applyTax(dividendAfterProfitTax, dividendTax.whenIn30Ruling);
-        return dividendNet + netForMinTaxSalary;
+
+        return grossYearly - (dividendNet + netForMinTaxSalary);
     }
 
     function minus30Percent(gross: number): number {
