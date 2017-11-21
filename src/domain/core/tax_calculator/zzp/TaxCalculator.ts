@@ -29,6 +29,10 @@ export default class TaxCalculatorZzp implements TaxCalculator {
     }
 
     moneyLeftAfterAllExpenses(moneyMade: number): number {
-        throw new Error('Method not implemented.');
+        const incomeTax = this.incomeTax(moneyMade);
+        const runningCosts = this.runningCosts(moneyMade);
+        const healthInsuranceCost = this.healthInsuranceCost(moneyMade);
+
+        return moneyMade - incomeTax - runningCosts - healthInsuranceCost;
     }
 }
