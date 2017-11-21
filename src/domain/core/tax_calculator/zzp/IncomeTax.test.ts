@@ -1,13 +1,15 @@
 import makeSelectable from 'material-ui/List/makeSelectable';
 import { IncomeTax } from '../../TaxCalculator';
-import GrossToNetZzp from './GrossToNet';
+import { SplineInterpolator } from '../../../../interpolation/InterpolatorImpl';
+import incomeTaxFactoryZzp from './IncomeTaxFactory';
 
 describe('Gross to Net', () => {
 
-    var grossToNet: IncomeTax;
+    var incomeTaxZzp: IncomeTax;
 
     beforeEach(() => {
-        grossToNet = new GrossToNetZzp();
+        const interpolator = new SplineInterpolator();
+        incomeTaxZzp = incomeTaxFactoryZzp(interpolator);
     });
 
     test('0 income', () => {
@@ -49,7 +51,7 @@ describe('Gross to Net', () => {
     function assertGrossToNet(gross: number, expectedNet: number) {
         // +/- the range in percent will be considered ok;
         const acceptableRangePercent = 1.5;
-        const net = grossToNet.calculateNetYearly(gross);
+        const net = incomeTaxZzp(gross);
         const margin = acceptableRangePercent / 100 * expectedNet;
         expect(net).toBeLessThanOrEqual(expectedNet + margin);
         expect(net).toBeGreaterThanOrEqual(expectedNet - margin);

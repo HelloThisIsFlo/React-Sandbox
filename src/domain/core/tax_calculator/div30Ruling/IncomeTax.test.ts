@@ -1,5 +1,5 @@
-import GrossToNetDividende30Ruling, { DividendTax, ProfitTax } from './GrossToNet';
 import { IncomeTax, Percent } from '../../TaxCalculator';
+import incomeTaxFactoryDiv30Ruling, { DividendTax, ProfitTax } from './IncomeTaxFactory';
 
 describe('Gross to Net', () => {
     /*
@@ -36,7 +36,7 @@ describe('Gross to Net', () => {
         over200k: 25
     };
 
-    const grossToNet: IncomeTax = new GrossToNetDividende30Ruling();
+    const incomeTax: IncomeTax = incomeTaxFactoryDiv30Ruling();
 
     test('Below Minimum (approx 53K) => Error', () => {
         /*
@@ -47,7 +47,7 @@ describe('Gross to Net', () => {
         */
 
         function assertInvalidGross(gross: number) {
-            expect(() => grossToNet.calculateNetYearly(gross))
+            expect(() => incomeTax(gross))
                 .toThrowError(`${gross} is below the minimum amount for this scheme`);
         }
 
@@ -78,7 +78,7 @@ describe('Gross to Net', () => {
     function assertGross(gross: number) {
         return {
             givesNet: function (expectedNet: number) {
-                const resNet = grossToNet.calculateNetYearly(gross);
+                const resNet = incomeTax(gross);
                 expect(resNet).toBeCloseTo(expectedNet);
             }
         };

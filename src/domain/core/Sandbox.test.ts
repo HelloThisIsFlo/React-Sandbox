@@ -1,8 +1,9 @@
-import GrossToNetDividende30Ruling from './tax_calculator/div30Ruling/GrossToNet';
-import GrossToNetZzp from './tax_calculator/zzp/GrossToNet';
+import incomeTaxFactoryZzp from './tax_calculator/zzp/IncomeTaxFactory';
+import incomeTaxDiv30Ruling from './tax_calculator/div30Ruling/IncomeTaxFactory';
+import { SplineInterpolator } from '../../interpolation/InterpolatorImpl';
 
-const zzpGtN = new GrossToNetZzp();
-const div30GtN = new GrossToNetDividende30Ruling();
+const zzpGtN = incomeTaxFactoryZzp(new SplineInterpolator());
+const div30GtN = incomeTaxDiv30Ruling();
 
 test.skip('Sandbox', () => {
 
@@ -14,8 +15,8 @@ test.skip('Sandbox', () => {
     const minDiv30Gross = 53000; // ~= approx
     const netForMinDiv30Gross = 43203;
     grossValues.map(gross => {
-        const zzpNet = zzpGtN.calculateNetYearly(gross);
-        const div30Net = div30GtN.calculateNetYearly(gross);
+        const zzpNet = zzpGtN(gross);
+        const div30Net = div30GtN(gross);
         const zzpTax = gross - zzpNet;
         var div30Tax: number;
         if (gross >= minDiv30Gross) {
