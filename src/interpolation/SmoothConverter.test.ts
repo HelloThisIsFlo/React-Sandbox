@@ -38,7 +38,7 @@ describe('SmoothPath Converter', () => {
 
     });
 
-    describe.only('3 points path: x => 2x, then x => 0.5x + a (a=6)', () => {
+    describe.only('3 points path: x => 2x, then x => 0.25x + a (a=7)', () => {
         const ptA: SmoothPoint = [2, 4];
         const ptB: SmoothPoint = [4, 8];
         const ptC: SmoothPoint = [8, 9];
@@ -76,9 +76,9 @@ describe('SmoothPath Converter', () => {
             expect(f(2.1)).toBeCloseTo(4.2, 0);
         });
 
-        test('Second segment: x => 0.5x + a', () => {
-            assert(f(6)).almostEqual(6 * 0.5 + 6);
-            assert(f(4.1)).almostEqual(4.1 * 0.5 + 6);
+        test('Second segment: x => 0.25x + a (a=7)', () => {
+            expect(f(6)).toBeAlmostEqual(6 * 0.25 + 7);
+            expect(f(4.1)).toBeAlmostEqual(4.1 * 0.25 + 7);
         });
 
     });
