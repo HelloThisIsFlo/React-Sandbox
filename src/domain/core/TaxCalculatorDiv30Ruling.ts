@@ -1,26 +1,31 @@
-import TaxCalculator from './TaxCalculator';
-import GrossToNetDividende30Ruling, {
-     RunningCostsDividende30Ruling, 
-     HealthInsuranceDividende30Ruling, 
-     DeductionsDividende30Ruling 
-    } from './tax_calculator/div30Ruling/GrossToNet';
+import TaxCalculator, { RunningCosts, HealthInsuranceCost, TaxableAmount, IncomeTax } from './TaxCalculator';
 
-export default class TaxCalculatorDividende30Ruling implements TaxCalculator {
+export function runningCostsDiv30Ruling(grossYearly: number) {
+    return 0;
+}
+export function healthInsuranceCostDiv30Ruling(grossYearly: number) {
+    return 0;
+}
+export function taxableAmountDiv30Ruling(grossYearly: number, deductions: number) {
+    throw 'Not implemented yet!';
+}
 
-    private grossToNet: GrossToNetDividende30Ruling;
-    private runningCosts: RunningCostsDividende30Ruling;
-    private healthInsurance: HealthInsuranceDividende30Ruling;
-    private deductions: DeductionsDividende30Ruling;
+export default class TaxCalculatorDiv30Ruling implements TaxCalculator {
+
+    private incomeTax: IncomeTax;
+    private runningCosts: RunningCosts;
+    private healthInsuranceCost: HealthInsuranceCost;
+    private taxableAmount: TaxableAmount;
 
     constructor(
-        grossToNet: GrossToNetDividende30Ruling,
-        runningCosts: RunningCostsDividende30Ruling,
-        healthInsurance: HealthInsuranceDividende30Ruling,
-        deductions: DeductionsDividende30Ruling) {
-        this.grossToNet = grossToNet;
+        incomeTax: IncomeTax,
+        runningCosts: RunningCosts,
+        healthInsuranceCost: HealthInsuranceCost,
+        taxableAmount: TaxableAmount) {
+        this.incomeTax = incomeTax;
         this.runningCosts = runningCosts;
-        this.healthInsurance = healthInsurance;
-        this.deductions = deductions;
+        this.healthInsuranceCost = healthInsuranceCost;
+        this.taxableAmount = taxableAmount;
     }
 
     moneyLeftAfterAllExpenses(moneyMade: number): number {

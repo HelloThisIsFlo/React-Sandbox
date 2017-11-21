@@ -1,26 +1,34 @@
-import TaxCalculator from './TaxCalculator';
-import GrossToNetZzp, { RunningCostsZzp, HealthInsuranceZzp, DeductionsZzp } from './tax_calculator/zzp/GrossToNet';
+import TaxCalculator, { RunningCosts, HealthInsuranceCost, TaxableAmount, IncomeTax } from './TaxCalculator';
+
+export function runningCostsZzp(grossYearly: number) {
+    return 0;
+}
+export function healthInsuranceCostZzp(grossYearly: number) {
+    return 0;
+}
+export function taxableAmountZzp(grossYearly: number, deductions: number) {
+    throw 'Not implemented yet!';
+}
 
 export default class TaxCalculatorZzp implements TaxCalculator {
 
-    private grossToNet: GrossToNetZzp;
-    private runningCosts: RunningCostsZzp;
-    private healthInsurance: HealthInsuranceZzp;
-    private deductions: DeductionsZzp;
+    private incomeTax: IncomeTax;
+    private runningCosts: RunningCosts;
+    private healthInsuranceCost: HealthInsuranceCost;
+    private taxableAmount: TaxableAmount;
 
     constructor(
-        grossToNet: GrossToNetZzp,
-        runningCosts: RunningCostsZzp,
-        healthInsurance: HealthInsuranceZzp,
-        deductions: DeductionsZzp) {
-        this.grossToNet = grossToNet;
+        incomeTax: IncomeTax,
+        runningCosts: RunningCosts,
+        healthInsuranceCost: HealthInsuranceCost,
+        taxableAmount: TaxableAmount) {
+        this.incomeTax = incomeTax;
         this.runningCosts = runningCosts;
-        this.healthInsurance = healthInsurance;
-        this.deductions = deductions;
+        this.healthInsuranceCost = healthInsuranceCost;
+        this.taxableAmount = taxableAmount;
     }
 
     moneyLeftAfterAllExpenses(moneyMade: number): number {
         throw new Error('Method not implemented.');
     }
-
 }
