@@ -1,4 +1,4 @@
-import TaxCalculator, { RunningCosts, HealthInsuranceCost, TaxableAmount, IncomeTax } from './TaxCalculator';
+import TaxCalculator, { RunningCosts, HealthInsuranceCost, TaxableAmount, IncomeTax } from '../TaxCalculator';
 
 export function runningCostsDiv30Ruling(grossYearly: number) {
     return 0;

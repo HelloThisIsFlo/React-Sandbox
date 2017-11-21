@@ -1,4 +1,4 @@
-import TaxCalculator, { RunningCosts, HealthInsuranceCost, TaxableAmount, IncomeTax } from './TaxCalculator';
+import TaxCalculator, { RunningCosts, HealthInsuranceCost, TaxableAmount, IncomeTax } from '../TaxCalculator';
 
 export function runningCostsZzp(grossYearly: number) {
     return 0;
