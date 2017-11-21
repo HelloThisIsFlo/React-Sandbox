@@ -1,8 +1,8 @@
-import { GrossToNet, RunningCosts, HealthInsurance, Deductions } from '../../TaxCalculator';
+import { IncomeTax, RunningCosts, HealthInsurance, Deductions } from '../../TaxCalculator';
 import { SplineInterpolator } from '../../../../interpolation/InterpolatorImpl';
 import Interpolator, { InterpolatedFunction } from '../../../interface/Interpolator';
 
-export default class GrossToNetZzp implements GrossToNet {
+export default class GrossToNetZzp implements IncomeTax {
 
     interpolator: Interpolator = new SplineInterpolator(); // todo inject
 
@@ -56,21 +56,5 @@ export default class GrossToNetZzp implements GrossToNet {
 
     private calculateInterpolatedValue(grossYearly: number): number {
         return this.grossToNetApproximation(grossYearly);
-    }
-}
-
-export class RunningCostsZzp implements RunningCosts {
-    calculateRunningCosts(grossYearly: number): number {
-        throw new Error('Not implemented yet !!');
-    }
-}
-export class HealthInsuranceZzp implements HealthInsurance {
-    calculateHealthInsuranceCosts(grossYearly: number): number {
-        throw new Error('Not implemented yet !!');
-    }
-}
-export class DeductionsZzp implements Deductions {
-    calculateTaxableAmount(grossYearly: number): number {
-        throw new Error('Not implemented yet !!');
     }
 }

@@ -1,10 +1,10 @@
 import makeSelectable from 'material-ui/List/makeSelectable';
-import { GrossToNet } from '../../TaxCalculator';
+import { IncomeTax } from '../../TaxCalculator';
 import GrossToNetZzp from './GrossToNet';
 
 describe('Gross to Net', () => {
 
-    var grossToNet: GrossToNet;
+    var grossToNet: IncomeTax;
 
     beforeEach(() => {
         grossToNet = new GrossToNetZzp();

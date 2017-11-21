@@ -1,5 +1,5 @@
 import GrossToNetDividende30Ruling, { DividendTax, ProfitTax } from './GrossToNet';
-import { GrossToNet, Percent } from '../../TaxCalculator';
+import { IncomeTax, Percent } from '../../TaxCalculator';
 
 describe('Gross to Net', () => {
     /*
@@ -36,7 +36,7 @@ describe('Gross to Net', () => {
         over200k: 25
     };
 
-    const grossToNet: GrossToNet = new GrossToNetDividende30Ruling();
+    const grossToNet: IncomeTax = new GrossToNetDividende30Ruling();
 
     test('Below Minimum (approx 53K) => Error', () => {
         /*

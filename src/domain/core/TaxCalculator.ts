@@ -13,15 +13,7 @@ export default interface TaxCalculator {
 
 /* HELPER CLASSES */
 export type Percent = number;
-export interface GrossToNet {
-    calculateNetYearly(grossYearly: number): number;
-}
-export interface RunningCosts {
-    calculateRunningCosts(grossYearly: number): number;
-}
-export interface HealthInsurance {
-    calculateHealthInsuranceCosts(grossYearly: number): number;
-}
-export interface Deductions {
-    calculateTaxableAmount(grossYearly: number): number;
-}
+export interface IncomeTax { (grossYearly: number): number; }
+export interface RunningCosts { (grossYearly: number): number; }
+export interface HealthInsuranceCost { (grossYearly: number): number; }
+export interface TaxableAmount { (grossYearly: number, deductions: number): number; }
