@@ -27,7 +27,7 @@ const div30RulingCalculator = new TaxCalculatorDiv30Ruling(
     healthInsuranceCostDiv30Ruling,
     taxableAmountDiv30Ruling
 );
-test('Sandbox', () => {
+test.skip('Sandbox', () => {
 
     const moneyMadeValues = [];
     for (var i = 10000; i <= 70000; i += 2000) {

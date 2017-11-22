@@ -1,4 +1,4 @@
-import TaxCalculator from '../core/TaxCalculator';
+import TaxCalculator from '../core/tax_calculator/TaxCalculator';
 
 export type YearDataIncome = { moneyMade: number; };
 export type YearDataResult = { netOnAccount: number; };
