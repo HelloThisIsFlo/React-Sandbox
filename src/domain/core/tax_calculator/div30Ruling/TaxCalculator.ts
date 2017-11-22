@@ -12,6 +12,9 @@ export function taxableAmountDiv30Ruling(grossYearly: number, deductions: number
 
 export default class TaxCalculatorDiv30Ruling implements TaxCalculator {
 
+    private minTaxableSalaryForScheme = 37000;
+    private minGrossSalaryForScheme = this.minTaxableSalaryForScheme / (1 - 0.30);
+
     private incomeTax: IncomeTax;
     private runningCosts: RunningCosts;
     private healthInsuranceCost: HealthInsuranceCost;
@@ -29,7 +32,18 @@ export default class TaxCalculatorDiv30Ruling implements TaxCalculator {
     }
 
     moneyLeftAfterAllExpenses(moneyMade: number): number {
-        throw new Error('Method not implemented.');
+
+        let incomeTax;
+        if (moneyMade >= this.minGrossSalaryForScheme) {
+            incomeTax = this.incomeTax(moneyMade);
+        } else {
+            incomeTax = this.incomeTax(this.minGrossSalaryForScheme);
+        }
+
+        const runningCosts = this.runningCosts(moneyMade);
+        const healthInsuranceCost = this.healthInsuranceCost(moneyMade);
+
+        return moneyMade - incomeTax - runningCosts - healthInsuranceCost;
     }
 
 }

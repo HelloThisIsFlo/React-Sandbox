@@ -1,9 +1,9 @@
 import incomeTaxFactoryZzp from './tax_calculator/zzp/IncomeTaxFactory';
-import incomeTaxDiv30Ruling from './tax_calculator/div30Ruling/IncomeTaxFactory';
+import incomeTaxFactoryDiv30Ruling from './tax_calculator/div30Ruling/IncomeTaxFactory';
 import { SplineInterpolator } from '../../interpolation/InterpolatorImpl';
 
 const zzpGtN = incomeTaxFactoryZzp(new SplineInterpolator());
-const div30GtN = incomeTaxDiv30Ruling();
+const div30GtN = incomeTaxFactoryDiv30Ruling();
 
 test.skip('Sandbox', () => {
 

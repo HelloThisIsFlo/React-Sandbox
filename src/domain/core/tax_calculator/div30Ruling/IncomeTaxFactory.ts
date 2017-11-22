@@ -18,7 +18,7 @@ const profitTax: ProfitTax = {
 /**
  * Create a IncomeTax calculator for the Dividende & 30% ruling scheme.
  */
-export default function incomeTaxDiv30Ruling(): IncomeTax {
+export default function incomeTaxFactoryDiv30Ruling(): IncomeTax {
 
     const minTaxSalary = 37000;
     const netForMinTaxSalary = 43203;
@@ -39,7 +39,7 @@ export default function incomeTaxDiv30Ruling(): IncomeTax {
     const incomeTax: IncomeTax = function (grossYearly: number): number {
         const taxable = minus30Percent(grossYearly);
 
-        if (taxable <= minTaxSalary) {
+        if (taxable < minTaxSalary) {
             throw `${grossYearly} is below the minimum amount for this scheme`;
         } else {
             return applyDividendStrategy(grossYearly);
