@@ -11,6 +11,7 @@ import TaxCalculatorDiv30Ruling, {
     healthInsuranceCostDiv30Ruling,
     taxableAmountDiv30Ruling
 } from './tax_calculator/div30Ruling/TaxCalculator';
+import { SimulationImpl, SimulationInput } from './simulation/Simulation';
 
 const zzpGtN = incomeTaxFactoryZzp(new SplineInterpolator());
 const div30GtN = incomeTaxFactoryDiv30Ruling();
@@ -27,6 +28,22 @@ const div30RulingCalculator = new TaxCalculatorDiv30Ruling(
     healthInsuranceCostDiv30Ruling,
     taxableAmountDiv30Ruling
 );
+test.skip('Sandbox', () => {
+    const simulation = new SimulationImpl(zzpCalculator, div30RulingCalculator);
+
+    const input: SimulationInput[] = [
+        50000,
+        50000,
+        50000,
+        50000,
+        50000,
+        50000,
+        50000,
+        50000
+    ].map((made, index) => ({ currentYear: index + 1, moneyMadeDuringTheYear: made }));
+
+    console.log(simulation.over8Years(input));
+});
 test.skip('Sandbox', () => {
 
     const moneyMadeValues = [];
