@@ -1,50 +1,55 @@
 import incomeTaxFactoryZzp from './tax_calculator/zzp/IncomeTaxFactory';
 import incomeTaxFactoryDiv30Ruling from './tax_calculator/div30Ruling/IncomeTaxFactory';
 import { SplineInterpolator } from '../../interpolation/InterpolatorImpl';
+import TaxCalculatorZzp, {
+    runningCostsZzp,
+    healthInsuranceCostZzp,
+    taxableAmountZzp
+} from './tax_calculator/zzp/TaxCalculator';
+import TaxCalculatorDiv30Ruling, {
+    runningCostsDiv30Ruling,
+    healthInsuranceCostDiv30Ruling,
+    taxableAmountDiv30Ruling
+} from './tax_calculator/div30Ruling/TaxCalculator';
 
 const zzpGtN = incomeTaxFactoryZzp(new SplineInterpolator());
 const div30GtN = incomeTaxFactoryDiv30Ruling();
 
-test.skip('Sandbox', () => {
+const zzpCalculator = new TaxCalculatorZzp(
+    incomeTaxFactoryZzp(new SplineInterpolator()),
+    runningCostsZzp,
+    healthInsuranceCostZzp,
+    taxableAmountZzp
+);
+const div30RulingCalculator = new TaxCalculatorDiv30Ruling(
+    incomeTaxFactoryDiv30Ruling(),
+    runningCostsDiv30Ruling,
+    healthInsuranceCostDiv30Ruling,
+    taxableAmountDiv30Ruling
+);
+test('Sandbox', () => {
 
-    const grossValues = [];
+    const moneyMadeValues = [];
     for (var i = 10000; i <= 70000; i += 2000) {
-        grossValues.push(i);
+        moneyMadeValues.push(i);
     }
 
-    const minDiv30Gross = 53000; // ~= approx
-    const netForMinDiv30Gross = 43203;
-    grossValues.map(gross => {
-        const zzpNet = zzpGtN(gross);
-        const div30Net = div30GtN(gross);
-        const zzpTax = gross - zzpNet;
-        var div30Tax: number;
-        if (gross >= minDiv30Gross) {
-            div30Tax = gross - div30Net;
-        } else {
-            div30Tax = minDiv30Gross - netForMinDiv30Gross;
-        }
-        const gainLossWhenUsingDiv30 = zzpTax - div30Tax;
-        return {
-            zzpTax: zzpTax,
-            div30Tax: div30Tax,
-            gainLossWhenUsingDiv30: gainLossWhenUsingDiv30,
-            print: () => {
-                const template = `
+    moneyMadeValues.forEach(moneyMade => {
+        const leftIfZzp = zzpCalculator.moneyLeftAfterAllExpenses(moneyMade);
+        const leftIfdiv30 = div30RulingCalculator.moneyLeftAfterAllExpenses(moneyMade);
+
+        const template = `
                 -------------------------------------
-                Gross: ${gross}
+                Money Made: ${moneyMade}
 
-                Tax using ZZP:   ${zzpTax}
-                Tax using DIV30: ${div30Tax}
+                Money left if using   ZZP: ${leftIfZzp}
+                Money left if using DIV30: ${leftIfdiv30}
 
-                Gain / Loss when using DIV30
-                ==> ${gainLossWhenUsingDiv30}
+                Net Profit if using DIV30 instead of ZZP
+                ==> ${leftIfdiv30 - leftIfZzp}
                 -------------------------------------
                 `;
-                console.log(template);
-            }
-        };
-    }).forEach(result => result.print());
-    expect(2).toEqual(1);
+        console.log(template);
+    });
 
 });

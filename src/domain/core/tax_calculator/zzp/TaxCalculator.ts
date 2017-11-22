@@ -1,12 +1,12 @@
 import TaxCalculator, { RunningCosts, HealthInsuranceCost, TaxableAmount, IncomeTax } from '../TaxCalculator';
 
-export function runningCostsZzp(grossYearly: number) {
+export function runningCostsZzp(grossYearly: number): number {
     return 0;
 }
-export function healthInsuranceCostZzp(grossYearly: number) {
+export function healthInsuranceCostZzp(grossYearly: number): number {
     return 0;
 }
-export function taxableAmountZzp(grossYearly: number, deductions: number) {
+export function taxableAmountZzp(grossYearly: number, deductions: number): number {
     throw 'Not implemented yet!';
 }
 

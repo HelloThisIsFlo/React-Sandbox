@@ -1,12 +1,12 @@
 import TaxCalculator, { RunningCosts, HealthInsuranceCost, TaxableAmount, IncomeTax } from '../TaxCalculator';
 
-export function runningCostsDiv30Ruling(grossYearly: number) {
+export function runningCostsDiv30Ruling(grossYearly: number): number {
     return 0;
 }
-export function healthInsuranceCostDiv30Ruling(grossYearly: number) {
+export function healthInsuranceCostDiv30Ruling(grossYearly: number): number {
     return 0;
 }
-export function taxableAmountDiv30Ruling(grossYearly: number, deductions: number) {
+export function taxableAmountDiv30Ruling(grossYearly: number, deductions: number): number {
     throw 'Not implemented yet!';
 }
 

@@ -1,6 +1,6 @@
 import TaxCalculator, { IncomeTax, RunningCosts, HealthInsuranceCost, TaxableAmount } from '../TaxCalculator';
 import { read } from 'fs';
-import TaxCalculatorDiv30Ruling from './TaxCalculator';
+import TaxCalculatorDiv30Ruling, { runningCostsDiv30Ruling } from './TaxCalculator';
 import incomeTaxFactoryDiv30Ruling from './IncomeTaxFactory';
 
 type StaticCosts = {
@@ -18,7 +18,7 @@ type StaticCosts = {
 describe('TaxCalculator for Dividende & 30% ruling', () => {
 
     const minGrossSalary = 37000 / (1 - 0.3);
-    const incomeTaxDiv30Ruling = incomeTaxFactoryDiv30Ruling();
+    const incomeTaxDiv30Ruling: IncomeTax = incomeTaxFactoryDiv30Ruling();
 
     describe('Above minimum', () => {
         describe('No deductions', () => {
