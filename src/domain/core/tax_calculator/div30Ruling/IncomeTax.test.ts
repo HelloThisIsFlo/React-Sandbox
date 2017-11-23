@@ -1,4 +1,4 @@
-import { IncomeTax, Percent } from '../../TaxCalculator';
+import { IncomeTax, Percent } from '../TaxCalculator';
 import incomeTaxFactoryDiv30Ruling, { DividendTax, ProfitTax } from './IncomeTaxFactory';
 
 describe('Gross to Net', () => {

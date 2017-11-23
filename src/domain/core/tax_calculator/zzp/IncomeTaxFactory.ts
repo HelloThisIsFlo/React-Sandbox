@@ -1,6 +1,6 @@
 import { SplineInterpolator } from '../../../../interpolation/InterpolatorImpl';
 import Interpolator, { InterpolatedFunction } from '../../../interface/Interpolator';
-import { IncomeTax } from '../../TaxCalculator';
+import { IncomeTax } from '../TaxCalculator';
 
 export default function incomeTaxFactoryZzp(interpolator: Interpolator): IncomeTax {
 

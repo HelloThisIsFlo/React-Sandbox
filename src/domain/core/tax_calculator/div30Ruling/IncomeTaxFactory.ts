@@ -1,4 +1,5 @@
-import { IncomeTax, Percent } from '../../TaxCalculator';
+import { Percent, IncomeTax } from '../TaxCalculator';
+
 export type ProfitTax = {
     under200k: Percent;
     over200k: Percent;

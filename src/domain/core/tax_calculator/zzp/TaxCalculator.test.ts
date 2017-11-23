@@ -1,6 +1,7 @@
 import TaxCalculator, { IncomeTax, RunningCosts, HealthInsuranceCost, TaxableAmount } from '../TaxCalculator';
 import TaxCalculatorZzp from './TaxCalculator';
 import { read } from 'fs';
+import { AlmostEqualMatcher } from '../../../../CustomTestMatchers';
 
 type StaticCosts = {
     incomeTax: number;
@@ -52,7 +53,7 @@ function givenStaticCosts(costs: StaticCosts) {
 
             return {
                 moneyLeftIs: function (expectedLeft: number) {
-                    expect(moneyLeft).toBeAlmostEqual(expectedLeft);
+                    (expect(moneyLeft) as AlmostEqualMatcher).toBeAlmostEqual(expectedLeft);
                 }
             };
         }

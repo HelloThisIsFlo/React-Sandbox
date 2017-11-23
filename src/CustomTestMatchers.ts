@@ -4,6 +4,9 @@ type CustomMatchers = {
   almostEqualMatchers: jest.ExpectExtendMap;
 };
 
+export interface AlmostEqualMatcher extends jest.Matchers<void> {
+  toBeAlmostEqual: (expected: number) => void;
+}
 export let customMatchers: CustomMatchers;
 customMatchers = {
 

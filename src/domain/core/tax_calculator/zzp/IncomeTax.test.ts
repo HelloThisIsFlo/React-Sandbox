@@ -1,5 +1,5 @@
 import makeSelectable from 'material-ui/List/makeSelectable';
-import { IncomeTax } from '../../TaxCalculator';
+import { IncomeTax } from '../TaxCalculator';
 import { SplineInterpolator } from '../../../../interpolation/InterpolatorImpl';
 import incomeTaxFactoryZzp from './IncomeTaxFactory';
 

@@ -1,6 +1,7 @@
 import smoothPathConverter from './SmoothConverter';
 import { SmoothPath, Smooth, smoothFactory, SmoothPoint } from './external_library/Smooth';
 import { InterpolatedFunction } from '../domain/interface/Interpolator';
+import { AlmostEqualMatcher } from '../CustomTestMatchers';
 
 /**
  * For the entirety of this test, only linear interpolation is used. (Only interpolating straight lines between points)
@@ -77,8 +78,8 @@ describe('SmoothPath Converter', () => {
         });
 
         test('Second segment: x => 0.25x + a (a=7)', () => {
-            expect(f(6)).toBeAlmostEqual(6 * 0.25 + 7);
-            expect(f(4.1)).toBeAlmostEqual(4.1 * 0.25 + 7);
+            (expect(f(6)) as AlmostEqualMatcher).toBeAlmostEqual(6 * 0.25 + 7);
+            (expect(f(4.1)) as AlmostEqualMatcher).toBeAlmostEqual(4.1 * 0.25 + 7);
         });
 
     });

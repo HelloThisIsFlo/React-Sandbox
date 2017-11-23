@@ -2,6 +2,7 @@ import TaxCalculator, { IncomeTax, RunningCosts, HealthInsuranceCost, TaxableAmo
 import { read } from 'fs';
 import TaxCalculatorDiv30Ruling, { runningCostsDiv30Ruling } from './TaxCalculator';
 import incomeTaxFactoryDiv30Ruling from './IncomeTaxFactory';
+import { AlmostEqualMatcher } from '../../../../CustomTestMatchers';
 
 type StaticCosts = {
     runningCosts: number;
@@ -78,7 +79,7 @@ describe('TaxCalculator for Dividende & 30% ruling', () => {
 
                 return {
                     moneyLeftIs: function (expectedLeft: number) {
-                        expect(moneyLeft).toBeAlmostEqual(expectedLeft);
+                        (expect(moneyLeft) as AlmostEqualMatcher).toBeAlmostEqual(expectedLeft);
                     }
                 };
             }
