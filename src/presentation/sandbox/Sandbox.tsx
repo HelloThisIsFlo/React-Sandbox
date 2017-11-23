@@ -5,6 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Multislider, { MultisliderValues } from '../multislider/Multislider';
 import PlotlyChart from 'react-plotlyjs-ts';
 import * as update from 'immutability-helper';
+import ValueSlider from '../ValueSlider/ValueSlider';
 
 export interface SandboxProps {
 }
@@ -64,9 +65,9 @@ class Sandbox extends React.Component<SandboxProps, SandboxState> {
     handleFirstMultislider(val: MultisliderValues) {
         const newState = update(this.state, {
             firstMultislider: {
-                value1: {$set: val.value1},
-                value2: {$set: val.value2},
-                value3: {$set: val.value3},
+                value1: { $set: val.value1 },
+                value2: { $set: val.value2 },
+                value3: { $set: val.value3 },
             }
         });
         console.log('handle multislider');
@@ -83,18 +84,15 @@ class Sandbox extends React.Component<SandboxProps, SandboxState> {
                     </div>
                 </div>
                 <div className="row justify-content-center" id="plot">
-                    <PlotlyChart data={this.data} layout={this.layout}/>
+                    <PlotlyChart data={this.data} layout={this.layout} />
                 </div>
                 <div className="row justify-content-center">
-                    <div className="col-6">
-                        <Multislider value={this.state.firstMultislider} onChange={this.handleFirstMultislider} />
-                    </div>
-                    <div className="col-6">
-                        <Multislider value={this.state.firstMultislider} onChange={this.handleFirstMultislider} />
-                    </div>
-                </div>
-                <div className="row justify-content-center">
-                    <RaisedButton label="Default" />
+                    <ValueSlider
+                        mainCaption="h. rate"
+                        valueCaption="e / hour"
+                        start={20}
+                        end={80}
+                    />
                 </div>
             </div>
         );
