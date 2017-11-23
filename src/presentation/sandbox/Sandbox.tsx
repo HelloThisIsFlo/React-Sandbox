@@ -76,21 +76,16 @@ class Sandbox extends React.Component<SandboxProps, SandboxState> {
     render() {
         this.refreshPlotData();
         return (
-            <div className="container">
-                <div className="row justify-content-center">
-                    <div className="col-8 alert alert-success" id="mainTitle">
-                        <Hello name="Test" enthusiasmLevel={10} />
-                    </div>
-                </div>
-                <div className="row justify-content-center" id="plot">
+            <div>
+                <div id="plot">
                     <PlotlyChart data={this.data} layout={this.layout} />
                 </div>
-                <div className="row justify-content-center">
+                <div>
                     <ValueSlider
                         mainCaption="h. rate"
                         valueCaption="e / hour"
-                        start={1}
-                        end={3}
+                        start={20}
+                        end={60}
                     />
                 </div>
             </div>

@@ -25,51 +25,46 @@ color: #9B9B9B;
 */
 
 .value-slider {
+    height: 120px;
+    width: 40px;
     display: grid;
-    grid-template-columns: 20px 20px;
-    grid-template-rows: 10px 20px 90px;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 20% 10% 70%;
+    grid-template-areas: 
+        "     val       val    "
+        " valCaption valCaption"
+        "mainCaption  slider  ";
+    align-items: stretch;
     border: solid 1px red;
 }
 
 .value {
-    background: green;
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 2;
+    grid-area: val;
     font-size: 9px;
+    background: green;
 }
 
 .value-caption {
+    grid-area: valCaption;
     background: greenyellow;
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 2;
-    grid-row-end: 3;
 }
 
 .main-caption {
-    /* background: red; */
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 3;
-    grid-row-end: 4;
+    grid-area: mainCaption;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .inside {
     background: blueviolet;
+    border: solid blueviolet 1px;
     height: 50%;
     width: 50%;
     /* margin: 0; */
 }
 
 .slider {
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 3;
-    grid-row-end: 4;
+    grid-area: slider;
     display: flex;
     align-items: center;
     justify-content: center;
