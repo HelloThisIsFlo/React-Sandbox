@@ -2,6 +2,7 @@
   "name": "react-ts-sandbox",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://the-ecosystem.xyz/react-sandbox/",
   "dependencies": {
     "immutability-helper": "^2.5.0",
     "material-ui": "^0.18.4",

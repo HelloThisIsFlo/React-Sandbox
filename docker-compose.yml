@@ -1,0 +1,8 @@
+version: '3'
+services:
+    react-sandbox:
+        build: .
+        image: react-sandbox
+        restart: always
+        ports: 
+            - "8888:80"
