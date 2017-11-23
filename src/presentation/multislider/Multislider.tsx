@@ -19,7 +19,7 @@ export interface MultisliderState extends MultisliderProps, MultisliderValues {
  */
 class Multislider extends React.Component<MultisliderProps, MultisliderState> {
 
-    constructor(props: MultisliderState) {
+    constructor(props: MultisliderProps) {
         super(props);
 
         this.state = {
@@ -70,6 +70,7 @@ class Multislider extends React.Component<MultisliderProps, MultisliderState> {
         });
         this.setState(newState);
         this.valuesChanged();
+
     }
 
     valuesChanged() {
