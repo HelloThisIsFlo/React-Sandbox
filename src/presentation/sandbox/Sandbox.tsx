@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Multislider, { MultisliderValues } from '../multislider/Multislider';
 import PlotlyChart from 'react-plotlyjs-ts';
 import * as update from 'immutability-helper';
-import ValueSlider from '../ValueSlider/ValueSlider';
+import ValueSlider from '../valueslider/ValueSlider';
 
 export interface SandboxProps {
 }
@@ -70,7 +70,6 @@ class Sandbox extends React.Component<SandboxProps, SandboxState> {
                 value3: { $set: val.value3 },
             }
         });
-        console.log('handle multislider');
         this.setState(newState);
     }
 
@@ -90,8 +89,8 @@ class Sandbox extends React.Component<SandboxProps, SandboxState> {
                     <ValueSlider
                         mainCaption="h. rate"
                         valueCaption="e / hour"
-                        start={20}
-                        end={80}
+                        start={1}
+                        end={3}
                     />
                 </div>
             </div>

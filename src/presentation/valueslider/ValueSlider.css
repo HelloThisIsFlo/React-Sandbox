@@ -23,3 +23,54 @@ font-family: AndaleMono;
 font-size: 5.54px;
 color: #9B9B9B;
 */
+
+.value-slider {
+    display: grid;
+    grid-template-columns: 20px 20px;
+    grid-template-rows: 10px 20px 90px;
+    border: solid 1px red;
+}
+
+.value {
+    background: green;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    font-size: 9px;
+}
+
+.value-caption {
+    background: greenyellow;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.main-caption {
+    /* background: red; */
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.inside {
+    background: blueviolet;
+    height: 50%;
+    width: 50%;
+    /* margin: 0; */
+}
+
+.slider {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
