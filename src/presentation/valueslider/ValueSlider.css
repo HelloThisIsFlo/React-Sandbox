@@ -45,9 +45,8 @@ color: #9B9B9B;
 }
 
 .value > input {
-    width: 100%;
+    width: 80%;
     text-align: center;
-    padding: 1.5px 6px 1px 6px;
     font-size: 14px;
     border: solid 0.5px #D5D5D5;
 }

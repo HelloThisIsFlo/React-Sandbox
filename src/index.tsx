@@ -10,12 +10,20 @@ injectTapEventPlugin();
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-// import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 // import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+
+const themeCustomisation = {
+  slider: {
+    handleSize: 8,
+    handleSizeDisabled: 6,
+    handleSizeActive: 12,
+  }
+};
 
 const MaterialUiWrapper = () => (
   // <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-  <MuiThemeProvider>
+  <MuiThemeProvider muiTheme={getMuiTheme(themeCustomisation)}>
     <Sandbox />
   </MuiThemeProvider>
 );

@@ -96,7 +96,7 @@ export default class Sandbox extends React.Component<SandboxProps, SandboxState>
 
         // TODO: Put this in a React Component that exposes the Money made in a year !! :D :D 
         const yearControl = (
-            <Paper style={{ width: 185, display: 'flex', justifyContent: 'space-around' }}>
+            <Paper style={{ width: 150, margin: 5, display: 'flex', justifyContent: 'space-around' }}>
                 <ValueSlider
                     mainCaption="h. rate"
                     valueCaption="&euro; / hour"
@@ -146,8 +146,8 @@ export default class Sandbox extends React.Component<SandboxProps, SandboxState>
                     {yearControl}
                     {yearControl}
                     {yearControl}
-                </div>
-                <div style={{ width: 'auto', display: 'flex', justifyContent: 'space-around', marginTop: 50 }}>
+                {/* </div>
+                <div style={{ width: 'auto', display: 'flex', justifyContent: 'space-around', marginTop: 50 }}> */}
                     {yearControl}
                     {yearControl}
                     {yearControl}
