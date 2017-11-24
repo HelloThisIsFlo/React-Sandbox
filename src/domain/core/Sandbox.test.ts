@@ -12,6 +12,7 @@ import TaxCalculatorDiv30Ruling, {
     taxableAmountDiv30Ruling
 } from './tax_calculator/div30Ruling/TaxCalculator';
 import { SimulationImpl, SimulationInput } from './simulation/Simulation';
+import * as update from 'immutability-helper';
 
 const zzpGtN = incomeTaxFactoryZzp(new SplineInterpolator());
 const div30GtN = incomeTaxFactoryDiv30Ruling();
@@ -69,4 +70,31 @@ test.skip('Sandbox', () => {
         console.log(template);
     });
 
+});
+
+test('sandbox', () => {
+
+    type Person = {
+        name: string;
+        lastname: string;
+        age: number
+    };
+    type ExtraPerson = {
+        name?: string;
+        lastname?: string;
+        age?: number;
+    };
+    const base: Person = {
+        name: 'patrick',
+        lastname: 'Franklin',
+        age: 9
+    };
+
+    const extra: ExtraPerson = {
+        lastname: 'Benedict'
+    };
+
+    const res = update(base, {$merge: extra});
+
+    console.log(res);
 });

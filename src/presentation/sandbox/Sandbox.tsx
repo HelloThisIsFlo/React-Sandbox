@@ -13,46 +13,123 @@ type MinMaxDefault = {
     default: number;
 };
 type Config = {
-    hRate: MinMaxDefault;
+    hourlyRate: MinMaxDefault;
+    hoursPerDay: MinMaxDefault;
+    daysPerMonth: MinMaxDefault;
+    monthsPerYear: MinMaxDefault;
 };
 const CONFIG: Config = {
-    hRate: {
+    hourlyRate: {
         min: 20,
         max: 80,
         default: 20
+    },
+    hoursPerDay: {
+        min: 2,
+        max: 10,
+        default: 6
+    },
+    daysPerMonth: {
+        min: 5,
+        max: 25,
+        default: 10
+    },
+    monthsPerYear: {
+        min: 2,
+        max: 12,
+        default: 6
     }
 };
 export interface SandboxProps { }
-export interface SandboxState extends SandboxProps { hRate: number; }
+export interface SandboxState extends SandboxProps {
+    hourlyRate: number;
+    hoursPerDay: number;
+    daysPerMonth: number;
+    monthsPerYear: number;
+}
 export default class Sandbox extends React.Component<SandboxProps, SandboxState> {
+
 
     constructor(props: SandboxProps) {
         super(props);
 
         this.state = {
-            hRate: CONFIG.hRate.default
+            hourlyRate: CONFIG.hourlyRate.default,
+            hoursPerDay: CONFIG.hoursPerDay.default,
+            daysPerMonth: CONFIG.daysPerMonth.default,
+            monthsPerYear: CONFIG.monthsPerYear.default
         };
 
         this.handleNewHourlyRate = this.handleNewHourlyRate.bind(this);
+        this.handleNewHoursPerDay = this.handleNewHoursPerDay.bind(this);
+        this.handleNewDaysPerMonth = this.handleNewDaysPerMonth.bind(this);
+        this.handleNewMonthsPerYear = this.handleNewMonthsPerYear.bind(this);
+        this.setNewState = this.setNewState.bind(this);
     }
 
-    handleNewHourlyRate(newHRate: number) {
-        this.setState({hRate: newHRate});
+    handleNewHourlyRate(newHourlyRate: number) {
+        this.setNewState({ hourlyRate: newHourlyRate });
+    }
+    handleNewHoursPerDay(newHoursPerDay: number) {
+        this.setNewState({ hoursPerDay: newHoursPerDay });
+    }
+    handleNewDaysPerMonth(newDaysPerMonth: number) {
+        this.setNewState({ daysPerMonth: newDaysPerMonth });
+    }
+    handleNewMonthsPerYear(newMonthsPerYear: number) {
+        this.setNewState({ monthsPerYear: newMonthsPerYear });
+    }
+
+    setNewState(newValues: {
+        hourlyRate?: number,
+        hoursPerDay?: number,
+        daysPerMonth?: number,
+        monthsPerYear?: number
+    }) {
+        this.setState(update(this.state, {
+            $merge: newValues
+        }));
     }
 
     render() {
         return (
-            <div style={{margin: 50}}>
-                <ValueSlider
-                    mainCaption="h. rate"
-                    valueCaption="e / hour"
-                    min={CONFIG.hRate.min}
-                    max={CONFIG.hRate.max}
-                    onNewValue={this.handleNewHourlyRate}
-                />
-                <p>
-                    {this.state.hRate}
-                </p>
+            <div style={{ margin: 50 }}>
+                <div>
+                    <p> hourlyRate: {this.state.hourlyRate} </p>
+                    <p> hoursPerDay: {this.state.hoursPerDay} </p>
+                    <p> daysPerMonth: {this.state.daysPerMonth} </p>
+                    <p> monthsPerYear: {this.state.monthsPerYear} </p>
+                </div>
+                <div style={{display: 'flex', justifyContent: 'space-around'}}>
+                    <ValueSlider
+                        mainCaption="h. rate"
+                        valueCaption="&euro; / hour"
+                        min={CONFIG.hourlyRate.min}
+                        max={CONFIG.hourlyRate.max}
+                        onNewValue={this.handleNewHourlyRate}
+                    />
+                    <ValueSlider
+                        mainCaption="h. day"
+                        valueCaption="h / day"
+                        min={CONFIG.hoursPerDay.min}
+                        max={CONFIG.hoursPerDay.max}
+                        onNewValue={this.handleNewHoursPerDay}
+                    />
+                    <ValueSlider
+                        mainCaption="d. month"
+                        valueCaption="d / month"
+                        min={CONFIG.daysPerMonth.min}
+                        max={CONFIG.daysPerMonth.max}
+                        onNewValue={this.handleNewDaysPerMonth}
+                    />
+                    <ValueSlider
+                        mainCaption="months"
+                        valueCaption="m worked"
+                        min={CONFIG.monthsPerYear.min}
+                        max={CONFIG.monthsPerYear.max}
+                        onNewValue={this.handleNewMonthsPerYear}
+                    />
+                </div>
             </div>
         );
     }
