@@ -43,7 +43,10 @@ color: #9B9B9B;
     align-items: center;
     justify-content: center;
 }
-.value > p {
+
+.value > input {
+    width: 100%;
+    text-align: center;
     padding: 1.5px 6px 1px 6px;
     font-size: 14px;
     border: solid 0.5px #D5D5D5;
@@ -67,7 +70,7 @@ color: #9B9B9B;
     align-items: center;
     justify-content: center;
 }
-.main-caption > p > p {
+.main-caption > div > p {
     text-align: center;
     margin: 0;
     font-size: 9px;
