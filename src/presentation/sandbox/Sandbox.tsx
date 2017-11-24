@@ -7,6 +7,7 @@ import PlotlyChart from 'react-plotlyjs-ts';
 import * as update from 'immutability-helper';
 import ValueSlider from '../valueslider/ValueSlider';
 import NumberInput from '../valueslider/NumberInput';
+import Paper from 'material-ui/Paper';
 
 type MinMaxDefault = {
     min: number;
@@ -100,7 +101,7 @@ export default class Sandbox extends React.Component<SandboxProps, SandboxState>
                     <p> daysPerMonth: {this.state.daysPerMonth} </p>
                     <p> monthsPerYear: {this.state.monthsPerYear} </p>
                 </div>
-                <div style={{ width: 185, display: 'flex', justifyContent: 'space-around' }}>
+                <Paper style={{ width: 185, display: 'flex', justifyContent: 'space-around' }}>
                     <ValueSlider
                         mainCaption="h. rate"
                         valueCaption="&euro; / hour"
@@ -133,12 +134,14 @@ export default class Sandbox extends React.Component<SandboxProps, SandboxState>
                         onNewValue={this.handleNewMonthsPerYear}
                         value={this.state.monthsPerYear}
                     />
+                </Paper>
+                <div style={{marginTop: 50}} >
+                    <NumberInput
+                        onNewValue={(newVal) => {
+                            this.setNewState({ hourlyRate: newVal });
+                        }}
+                    />
                 </div>
-                <NumberInput
-                    onNewValue={(newVal) => {
-                        this.setNewState({hourlyRate: newVal});
-                    }}
-                />
             </div>
         );
     }
