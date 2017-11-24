@@ -93,49 +93,67 @@ export default class Sandbox extends React.Component<SandboxProps, SandboxState>
     }
 
     render() {
+
+        // TODO: Put this in a React Component that exposes the Money made in a year !! :D :D 
+        const yearControl = (
+            <Paper style={{ width: 185, display: 'flex', justifyContent: 'space-around' }}>
+                <ValueSlider
+                    mainCaption="h. rate"
+                    valueCaption="&euro; / hour"
+                    min={CONFIG.hourlyRate.min}
+                    max={CONFIG.hourlyRate.max}
+                    onNewValue={this.handleNewHourlyRate}
+                    value={this.state.hourlyRate}
+                />
+                <ValueSlider
+                    mainCaption="h. day"
+                    valueCaption="h / day"
+                    min={CONFIG.hoursPerDay.min}
+                    max={CONFIG.hoursPerDay.max}
+                    onNewValue={this.handleNewHoursPerDay}
+                    value={this.state.hoursPerDay}
+                />
+                <ValueSlider
+                    mainCaption="d. month"
+                    valueCaption="d / month"
+                    min={CONFIG.daysPerMonth.min}
+                    max={CONFIG.daysPerMonth.max}
+                    onNewValue={this.handleNewDaysPerMonth}
+                    value={this.state.daysPerMonth}
+                />
+                <ValueSlider
+                    mainCaption="months"
+                    valueCaption="m worked"
+                    min={CONFIG.monthsPerYear.min}
+                    max={CONFIG.monthsPerYear.max}
+                    onNewValue={this.handleNewMonthsPerYear}
+                    value={this.state.monthsPerYear}
+                />
+            </Paper>
+        );
+
+
         return (
             <div style={{ margin: 50 }}>
-                <div>
+                <Paper>
                     <p> hourlyRate: {this.state.hourlyRate} </p>
                     <p> hoursPerDay: {this.state.hoursPerDay} </p>
                     <p> daysPerMonth: {this.state.daysPerMonth} </p>
                     <p> monthsPerYear: {this.state.monthsPerYear} </p>
-                </div>
-                <Paper style={{ width: 185, display: 'flex', justifyContent: 'space-around' }}>
-                    <ValueSlider
-                        mainCaption="h. rate"
-                        valueCaption="&euro; / hour"
-                        min={CONFIG.hourlyRate.min}
-                        max={CONFIG.hourlyRate.max}
-                        onNewValue={this.handleNewHourlyRate}
-                        value={this.state.hourlyRate}
-                    />
-                    <ValueSlider
-                        mainCaption="h. day"
-                        valueCaption="h / day"
-                        min={CONFIG.hoursPerDay.min}
-                        max={CONFIG.hoursPerDay.max}
-                        onNewValue={this.handleNewHoursPerDay}
-                        value={this.state.hoursPerDay}
-                    />
-                    <ValueSlider
-                        mainCaption="d. month"
-                        valueCaption="d / month"
-                        min={CONFIG.daysPerMonth.min}
-                        max={CONFIG.daysPerMonth.max}
-                        onNewValue={this.handleNewDaysPerMonth}
-                        value={this.state.daysPerMonth}
-                    />
-                    <ValueSlider
-                        mainCaption="months"
-                        valueCaption="m worked"
-                        min={CONFIG.monthsPerYear.min}
-                        max={CONFIG.monthsPerYear.max}
-                        onNewValue={this.handleNewMonthsPerYear}
-                        value={this.state.monthsPerYear}
-                    />
                 </Paper>
-                <div style={{marginTop: 50}} >
+                <div style={{ width: 'auto', display: 'flex', justifyContent: 'space-around' }}>
+                    {yearControl}
+                    {yearControl}
+                    {yearControl}
+                    {yearControl}
+                </div>
+                <div style={{ width: 'auto', display: 'flex', justifyContent: 'space-around', marginTop: 50 }}>
+                    {yearControl}
+                    {yearControl}
+                    {yearControl}
+                    {yearControl}
+                </div>
+                <div style={{ marginTop: 50 }} >
                     <NumberInput
                         onNewValue={(newVal) => {
                             this.setNewState({ hourlyRate: newVal });
