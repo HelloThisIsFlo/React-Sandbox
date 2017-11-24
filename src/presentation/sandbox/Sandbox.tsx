@@ -6,6 +6,7 @@ import Multislider, { MultisliderValues } from '../multislider/Multislider';
 import PlotlyChart from 'react-plotlyjs-ts';
 import * as update from 'immutability-helper';
 import ValueSlider from '../valueslider/ValueSlider';
+import NumberInput from '../valueslider/NumberInput';
 
 type MinMaxDefault = {
     min: number;
@@ -22,7 +23,7 @@ const CONFIG: Config = {
     hourlyRate: {
         min: 20,
         max: 80,
-        default: 20
+        default: 30
     },
     hoursPerDay: {
         min: 2,
@@ -48,7 +49,6 @@ export interface SandboxState extends SandboxProps {
     monthsPerYear: number;
 }
 export default class Sandbox extends React.Component<SandboxProps, SandboxState> {
-
 
     constructor(props: SandboxProps) {
         super(props);
@@ -100,13 +100,14 @@ export default class Sandbox extends React.Component<SandboxProps, SandboxState>
                     <p> daysPerMonth: {this.state.daysPerMonth} </p>
                     <p> monthsPerYear: {this.state.monthsPerYear} </p>
                 </div>
-                <div style={{display: 'flex', justifyContent: 'space-around'}}>
+                <div style={{ width: 185, display: 'flex', justifyContent: 'space-around' }}>
                     <ValueSlider
                         mainCaption="h. rate"
                         valueCaption="&euro; / hour"
                         min={CONFIG.hourlyRate.min}
                         max={CONFIG.hourlyRate.max}
                         onNewValue={this.handleNewHourlyRate}
+                        value={this.state.hourlyRate}
                     />
                     <ValueSlider
                         mainCaption="h. day"
@@ -114,6 +115,7 @@ export default class Sandbox extends React.Component<SandboxProps, SandboxState>
                         min={CONFIG.hoursPerDay.min}
                         max={CONFIG.hoursPerDay.max}
                         onNewValue={this.handleNewHoursPerDay}
+                        value={this.state.hoursPerDay}
                     />
                     <ValueSlider
                         mainCaption="d. month"
@@ -121,6 +123,7 @@ export default class Sandbox extends React.Component<SandboxProps, SandboxState>
                         min={CONFIG.daysPerMonth.min}
                         max={CONFIG.daysPerMonth.max}
                         onNewValue={this.handleNewDaysPerMonth}
+                        value={this.state.daysPerMonth}
                     />
                     <ValueSlider
                         mainCaption="months"
@@ -128,8 +131,14 @@ export default class Sandbox extends React.Component<SandboxProps, SandboxState>
                         min={CONFIG.monthsPerYear.min}
                         max={CONFIG.monthsPerYear.max}
                         onNewValue={this.handleNewMonthsPerYear}
+                        value={this.state.monthsPerYear}
                     />
                 </div>
+                <NumberInput
+                    onNewValue={(newVal) => {
+                        this.setNewState({hourlyRate: newVal});
+                    }}
+                />
             </div>
         );
     }

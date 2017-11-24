@@ -13,6 +13,7 @@ export type ValueSliderProps = {
     valueCaption?: String;
     min?: number;
     max?: number;
+    value?: number;
 };
 export interface ValueSliderState extends ValueSliderProps {
     onNewValue: (newVal: number) => void;
@@ -20,6 +21,7 @@ export interface ValueSliderState extends ValueSliderProps {
     min: number;
     max: number;
     value: number;
+    nonSanitizedValue: number;
 }
 
 export default class ValueSlider extends React.Component<ValueSliderProps, ValueSliderState> {
@@ -40,33 +42,64 @@ export default class ValueSlider extends React.Component<ValueSliderProps, Value
     constructor(props: ValueSliderProps) {
         super(props);
 
+        function initValueFromProps() {
+            if (props.value) { return props.value; }
+            if (props.min) { return props.min; }
+            return DEFAULT_MIN;
+        }
+
         const doNothing = (val: number) => { return; };
         this.state = {
             onNewValue: props.onNewValue ? props.onNewValue : doNothing,
             mainCaption: props.mainCaption,
             valueCaption: props.valueCaption ? props.valueCaption : '',
-            value: props.min ? props.min : DEFAULT_MIN,
+            value: initValueFromProps(),
+            nonSanitizedValue: initValueFromProps(),
             min: props.min ? props.min : DEFAULT_MIN,
             max: props.max ? props.max : DEFAULT_MAX
         };
 
         this.handleNewValueFromSlider = this.handleNewValueFromSlider.bind(this);
-        this.setStateAndCallCallback = this.setStateAndCallCallback.bind(this);
+        this.sanitizeAndSetValue = this.sanitizeAndSetValue.bind(this);
+    }
+
+    componentWillReceiveProps(newProps: ValueSliderProps) {
+        if (newProps.value) {
+            this.sanitizeAndSetValue(newProps.value);
+        }
+    }
+
+    componentDidUpdate(prevProps: ValueSliderProps, prevState: ValueSliderState) {
+        const callCallback = () => this.state.onNewValue(this.state.value);
+
+        const newValueAvailable = prevState.value !== this.state.value;
+        const triedToUpdateButFailed =
+            prevState.nonSanitizedValue !== this.state.nonSanitizedValue
+            && (prevState.value === this.state.value);
+
+        if (newValueAvailable || triedToUpdateButFailed) {
+            callCallback();
+        }
     }
 
     handleNewValueFromSlider(_e: {}, newVal: number) {
-        this.setStateAndCallCallback(Math.round(newVal));
+        this.sanitizeAndSetValue(newVal);
+    }
+    handleNewValueFromNumberInput(newVal: number) {
+        this.sanitizeAndSetValue(newVal);
     }
 
-    setStateAndCallCallback(newVal: number) {
+    sanitizeAndSetValue(nonSanitized: number) {
+        let newVal = nonSanitized;
         newVal = newVal > this.state.max ? this.state.max : newVal;
         newVal = newVal < this.state.min ? this.state.min : newVal;
+        newVal = Math.round(newVal);
+
         const newState: ValueSliderState = update(this.state, {
-            value: { $set: newVal }
+            value: { $set: newVal },
+            nonSanitizedValue: { $set: nonSanitized },
         });
         this.setState(newState);
-
-        this.state.onNewValue(newVal);
     }
 
     render() {
@@ -84,7 +117,7 @@ export default class ValueSlider extends React.Component<ValueSliderProps, Value
                 <div className="value">
                     <NumberInput
                         value={this.state.value}
-                        onNewValue={this.setStateAndCallCallback}
+                        onNewValue={this.sanitizeAndSetValue}
                     />
                 </div>
                 <div className="value-caption" >

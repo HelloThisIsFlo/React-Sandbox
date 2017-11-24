@@ -35,6 +35,13 @@ export default class NumberInput extends React.Component<NumberInputProps, Numbe
             this.setNewNumberValue(newProps.value);
         }
     }
+    componentDidUpdate(prevProps: NumberInputProps, prevStat: NumberInputState) {
+        const callCallback = () => this.state.onNewValue(this.state.value);
+
+        if (this.state.value !== prevStat.value) {
+            callCallback();
+        }
+    }
 
     setNewNumberValue(newVal: number) {
         this.setState(update(this.state, {
@@ -60,7 +67,6 @@ export default class NumberInput extends React.Component<NumberInputProps, Numbe
         if (isNumber(this.state.innerTextValue)) {
             const newValue = parseInt(this.state.innerTextValue, 10);
             this.setNewNumberValue(newValue);
-            this.state.onNewValue(newValue);
         } else {
             this.setNewNumberValue(this.state.value);
         }
