@@ -16,10 +16,13 @@ export default class NumberInput extends React.Component<NumberInputProps, Numbe
 
     constructor(props: NumberInputProps) {
         super(props);
+
+        const doNothing = (val: number) => { return; };
+        const initValue = props.value ? props.value : 0;
         this.state = {
-            value: props.value ? props.value : 0,
-            innerTextValue: '',
-            onNewValue: props.onNewValue ? props.onNewValue : (v) => { return; }
+            value: initValue,
+            innerTextValue: initValue.toString(),
+            onNewValue: props.onNewValue ? props.onNewValue : doNothing
         };
 
         this.handleChange = this.handleChange.bind(this);
