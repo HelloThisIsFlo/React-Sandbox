@@ -41,8 +41,8 @@ export default class Sandbox extends React.Component<SandboxProps, SandboxState>
                 <ValueSlider
                     mainCaption="h. rate"
                     valueCaption="e / hour"
-                    start={CONFIG.hRate.min}
-                    end={CONFIG.hRate.max}
+                    min={CONFIG.hRate.min}
+                    max={CONFIG.hRate.max}
                 />
                 <p>
                     Hello
