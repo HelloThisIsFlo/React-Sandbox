@@ -8,12 +8,14 @@ const DEFAULT_MIN = 0;
 const DEFAULT_MAX = 100;
 
 export type ValueSliderProps = {
+    onNewValue?: (newVal: number) => void;
     mainCaption: String;
     valueCaption?: String;
     min?: number;
     max?: number;
 };
 export interface ValueSliderState extends ValueSliderProps {
+    onNewValue: (newVal: number) => void;
     valueCaption: String;
     min: number;
     max: number;
@@ -38,7 +40,9 @@ export default class ValueSlider extends React.Component<ValueSliderProps, Value
     constructor(props: ValueSliderProps) {
         super(props);
 
+        const doNothing = (val: number) => { return; };
         this.state = {
+            onNewValue: props.onNewValue ? props.onNewValue : doNothing,
             mainCaption: props.mainCaption,
             valueCaption: props.valueCaption ? props.valueCaption : '',
             value: props.min ? props.min : DEFAULT_MIN,
@@ -47,20 +51,22 @@ export default class ValueSlider extends React.Component<ValueSliderProps, Value
         };
 
         this.handleNewValueFromSlider = this.handleNewValueFromSlider.bind(this);
-        this.setStateWithNewValue = this.setStateWithNewValue.bind(this);
+        this.setStateAndCallCallback = this.setStateAndCallCallback.bind(this);
     }
 
     handleNewValueFromSlider(_e: {}, newVal: number) {
-        this.setStateWithNewValue(Math.round(newVal));
+        this.setStateAndCallCallback(Math.round(newVal));
     }
 
-    setStateWithNewValue(newVal: number) {
+    setStateAndCallCallback(newVal: number) {
         newVal = newVal > this.state.max ? this.state.max : newVal;
         newVal = newVal < this.state.min ? this.state.min : newVal;
         const newState: ValueSliderState = update(this.state, {
             value: { $set: newVal }
         });
         this.setState(newState);
+
+        this.state.onNewValue(newVal);
     }
 
     render() {
@@ -78,7 +84,7 @@ export default class ValueSlider extends React.Component<ValueSliderProps, Value
                 <div className="value">
                     <NumberInput
                         value={this.state.value}
-                        onNewValue={this.setStateWithNewValue}
+                        onNewValue={this.setStateAndCallCallback}
                     />
                 </div>
                 <div className="value-caption" >

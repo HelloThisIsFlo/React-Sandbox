@@ -33,6 +33,11 @@ export default class Sandbox extends React.Component<SandboxProps, SandboxState>
             hRate: CONFIG.hRate.default
         };
 
+        this.handleNewHourlyRate = this.handleNewHourlyRate.bind(this);
+    }
+
+    handleNewHourlyRate(newHRate: number) {
+        this.setState({hRate: newHRate});
     }
 
     render() {
@@ -43,9 +48,10 @@ export default class Sandbox extends React.Component<SandboxProps, SandboxState>
                     valueCaption="e / hour"
                     min={CONFIG.hRate.min}
                     max={CONFIG.hRate.max}
+                    onNewValue={this.handleNewHourlyRate}
                 />
                 <p>
-                    Hello
+                    {this.state.hRate}
                 </p>
             </div>
         );
