@@ -28,25 +28,37 @@ color: #9B9B9B;
     height: 120px;
     width: 40px;
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 40% 60%;
     grid-template-rows: 20% 10% 70%;
     grid-template-areas: 
         "     val       val    "
         " valCaption valCaption"
         "mainCaption  slider  ";
     align-items: stretch;
-    border: solid 1px red;
 }
 
 .value {
     grid-area: val;
-    font-size: 9px;
-    background: green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.value > p {
+    padding: 1.5px 6px 1px 6px;
+    font-size: 14px;
+    border: solid 0.5px #D5D5D5;
 }
 
 .value-caption {
     grid-area: valCaption;
-    background: greenyellow;
+    background: geenyellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.value-caption > p {
+    font-size: 8px;
+    color: #9B9B9B;
 }
 
 .main-caption {
@@ -55,12 +67,12 @@ color: #9B9B9B;
     align-items: center;
     justify-content: center;
 }
-.inside {
-    background: blueviolet;
-    border: solid blueviolet 1px;
-    height: 50%;
-    width: 50%;
-    /* margin: 0; */
+.main-caption > p > p {
+    text-align: center;
+    margin: 0;
+    font-size: 9px;
+    color: #9B9B9B;
+    text-transform: uppercase;
 }
 
 .slider {

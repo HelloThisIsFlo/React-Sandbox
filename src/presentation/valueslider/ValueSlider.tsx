@@ -50,23 +50,40 @@ export default class ValueSlider extends React.Component<ValueSliderProps, Value
 
     handleNewValue(_e: {}, newVal: number) {
         const newState: ValueSliderState = update(this.state, {
-            value: {$set: Math.round(newVal)}
+            value: { $set: Math.round(newVal) }
         });
         this.setState(newState);
     }
 
+    mainCaptionPasdf(mainCaption: string) {
+
+        let a = mainCaption
+            .split('')
+            .map(char => `${char}<br/>`)
+            .join('');
+
+        return (
+            <p>s</p>
+        );
+    }
+
     render() {
+        let formattedMainCaption = this.state.mainCaption
+            .split('')
+            .map((char, index) =>
+                <p key={index}>{char}</p>
+            );
 
         return (
             <div className="value-slider">
                 <div className="main-caption" >
-                    <div className="inside" />
+                    <p>{formattedMainCaption}</p>
                 </div>
                 <div className="value" >
-                    {this.state.value}
+                    <p>{this.state.value}</p>
                 </div>
                 <div className="value-caption" >
-                    hello
+                    <p>{this.state.valueCaption}</p>
                 </div>
                 <div className="slider" >
                     <Slider
