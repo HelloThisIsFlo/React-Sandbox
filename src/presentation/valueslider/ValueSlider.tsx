@@ -3,7 +3,7 @@ import './ValueSliderStyle.css';
 import { style, ValueSliderStyle } from './ValueSliderStyle';
 import Slider from 'material-ui/Slider';
 import * as update from 'immutability-helper';
-import NumberInput from './NumberInput';
+import NumberInput from '../numberinput/NumberInput';
 
 const DEFAULT_MIN = 0;
 const DEFAULT_MAX = 100;

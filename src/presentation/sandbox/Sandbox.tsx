@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import PlotlyChart from 'react-plotlyjs-ts';
 import * as update from 'immutability-helper';
 import ValueSlider from '../valueslider/ValueSlider';
-import NumberInput from '../valueslider/NumberInput';
+import NumberInput from '../numberinput/NumberInput';
 import Paper from 'material-ui/Paper';
 import MagicLink from '../tutorialremove/MagicLink';
 
@@ -152,7 +152,7 @@ export default class Sandbox extends React.Component<SandboxProps, SandboxState>
                     {yearControl}
                     {yearControl}
                     {yearControl}
-                    {/* </div>
+                {/* </div>
                 <div style={{ width: 'auto', display: 'flex', justifyContent: 'space-around', marginTop: 50 }}> */}
                     {yearControl}
                     {yearControl}

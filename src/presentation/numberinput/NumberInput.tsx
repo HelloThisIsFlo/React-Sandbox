@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as update from 'immutability-helper';
+import * as ReactDOM from 'react-dom';
 
 export type NumberInputProps = {
     onNewValue?: (newValue: number) => void;
@@ -12,7 +13,7 @@ export interface NumberInputState extends NumberInputProps {
 }
 export default class NumberInput extends React.Component<NumberInputProps, NumberInputState> {
 
-    private htmlInputElement: HTMLInputElement;
+    private htmlInputElement: HTMLInputElement | null;
 
     constructor(props: NumberInputProps) {
         super(props);
@@ -46,7 +47,7 @@ export default class NumberInput extends React.Component<NumberInputProps, Numbe
     setNewNumberValue(newVal: number) {
         this.setState(update(this.state, {
             value: { $set: newVal },
-            innerTextValue: {$set: newVal}
+            innerTextValue: { $set: newVal }
         }));
     }
 
@@ -58,12 +59,13 @@ export default class NumberInput extends React.Component<NumberInputProps, Numbe
     }
 
     onKeyBlurIfEnterKey(e: React.KeyboardEvent<HTMLInputElement>) {
-        if (e.key === 'Enter') {
-            this.htmlInputElement.blur();
+        if (e.key === 'Enter' && e.currentTarget) {
+            e.currentTarget.blur();
         }
     }
 
-    onBlurValidateAndCallCallback(e: React.FocusEvent<HTMLInputElement>) {
+    onBlurValidateAndCallCallback(e: React.FocusEvent<HTMLElement>) {
+
         if (isNumber(this.state.innerTextValue)) {
             const newValue = parseInt(this.state.innerTextValue, 10);
             this.setNewNumberValue(newValue);
@@ -77,8 +79,9 @@ export default class NumberInput extends React.Component<NumberInputProps, Numbe
     render() {
         return (
             <input
+                id="debug"
                 inputMode="numeric"
-                ref={(input) => { if (input) { this.htmlInputElement = input; } }}
+                ref={(input) => { this.htmlInputElement = input; }}
                 type="text"
                 value={this.state.innerTextValue}
                 onChange={this.handleChange}
