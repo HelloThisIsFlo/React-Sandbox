@@ -7,6 +7,7 @@ import * as update from 'immutability-helper';
 import ValueSlider from '../valueslider/ValueSlider';
 import NumberInput from '../valueslider/NumberInput';
 import Paper from 'material-ui/Paper';
+import MagicLink from '../tutorialremove/MagicLink';
 
 type MinMaxDefault = {
     min: number;
@@ -134,6 +135,13 @@ export default class Sandbox extends React.Component<SandboxProps, SandboxState>
         return (
             <div style={{ margin: 50 }}>
                 <Paper>
+                    <MagicLink
+                        href="https://floriankempenich.com"
+                    >
+                        Hello this is a link
+                    </MagicLink>
+                </Paper>
+                <Paper>
                     <p> hourlyRate: {this.state.hourlyRate} </p>
                     <p> hoursPerDay: {this.state.hoursPerDay} </p>
                     <p> daysPerMonth: {this.state.daysPerMonth} </p>
@@ -144,7 +152,7 @@ export default class Sandbox extends React.Component<SandboxProps, SandboxState>
                     {yearControl}
                     {yearControl}
                     {yearControl}
-                {/* </div>
+                    {/* </div>
                 <div style={{ width: 'auto', display: 'flex', justifyContent: 'space-around', marginTop: 50 }}> */}
                     {yearControl}
                     {yearControl}
