@@ -21,10 +21,10 @@
     "eject": "react-scripts-ts eject"
   },
   "devDependencies": {
-    "@types/enzyme": "^3.1.4",
+    "@types/enzyme": "^3.1.5",
     "@types/enzyme-adapter-react-16": "^1.0.1",
     "@types/immutability-helper": "^2.0.15",
-    "@types/jest": "^21.1.6",
+    "@types/jest": "^21.1.8",
     "@types/material-ui": "^0.18.4",
     "@types/node": "^8.0.53",
     "@types/plotly.js": "^1.28.9",
