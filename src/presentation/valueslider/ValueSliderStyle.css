@@ -1,28 +1,8 @@
-/* Line: 
-border: 0 solid #4A4A4A;
-
-/* Oval: 
-background: #D8D8D8;
-border: 0 solid #979797;
-
-/* D . month:
-font-family: Helvetica;
-font-size: 9.24px;
-color: #9B9B9B;
-
-/* 18: 
-font-family: AndaleMono;
-font-size: 9.24px;
-color: #4A4A4A;
-
-/* Rectangle: 
-border: 0 solid #D5D5D5;
-
-/* days / month: 
-font-family: AndaleMono;
-font-size: 5.54px;
-color: #9B9B9B;
-*/
+/**
+ * Define all the regular CSS styles that are in-lined
+ * For in-lined styles, see the corresponding TSX file
+ * 
+ */
 
 .value-slider {
     height: 120px;

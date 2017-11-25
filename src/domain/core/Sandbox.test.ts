@@ -96,5 +96,5 @@ test('sandbox', () => {
 
     const res = update(base, {$merge: extra});
 
-    console.log(res);
+    // console.log(res);
 });

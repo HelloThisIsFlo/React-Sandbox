@@ -2,7 +2,6 @@ import * as React from 'react';
 import './Sandbox.css';
 import Hello from '../helloworld/Hello';
 import RaisedButton from 'material-ui/RaisedButton';
-import Multislider, { MultisliderValues } from '../multislider/Multislider';
 import PlotlyChart from 'react-plotlyjs-ts';
 import * as update from 'immutability-helper';
 import ValueSlider from '../valueslider/ValueSlider';
@@ -131,7 +130,6 @@ export default class Sandbox extends React.Component<SandboxProps, SandboxState>
                 />
             </Paper>
         );
-
 
         return (
             <div style={{ margin: 50 }}>

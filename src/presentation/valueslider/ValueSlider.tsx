@@ -1,5 +1,6 @@
 import * as React from 'react';
-import './ValueSlider.css';
+import './ValueSliderStyle.css';
+import { style, ValueSliderStyle } from './ValueSliderStyle';
 import Slider from 'material-ui/Slider';
 import * as update from 'immutability-helper';
 import NumberInput from './NumberInput';
@@ -25,19 +26,6 @@ export interface ValueSliderState extends ValueSliderProps {
 }
 
 export default class ValueSlider extends React.Component<ValueSliderProps, ValueSliderState> {
-
-    private rootSliderStyle = {
-        height: '100%',
-        width: '100%',
-        display: 'flex',
-        flexDirection: ('column' as 'column'),
-        alignItems: ('center' as 'center'),
-        justifyContent: ('center' as 'center'),
-    };
-    private sliderSliderStyle = {
-        marginTop: 10,
-        marginBottom: 10
-    };
 
     constructor(props: ValueSliderProps) {
         super(props);
@@ -125,8 +113,8 @@ export default class ValueSlider extends React.Component<ValueSliderProps, Value
                 </div>
                 <div className="slider" >
                     <Slider
-                        style={this.rootSliderStyle}
-                        sliderStyle={this.sliderSliderStyle}
+                        style={style.slider.root}
+                        sliderStyle={style.slider.slider}
                         axis="y"
                         min={this.state.min}
                         max={this.state.max}
