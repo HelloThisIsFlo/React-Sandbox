@@ -23,6 +23,7 @@
   "devDependencies": {
     "@types/enzyme": "^3.1.5",
     "@types/enzyme-adapter-react-16": "^1.0.1",
+    "@types/enzyme-to-json": "^1.5.0",
     "@types/immutability-helper": "^2.0.15",
     "@types/jest": "^21.1.8",
     "@types/material-ui": "^0.18.4",
@@ -33,6 +34,7 @@
     "@types/react-tap-event-plugin": "0.0.30",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
+    "enzyme-to-json": "^3.2.2",
     "react-addons-test-utils": "^15.6.2"
   }
 }

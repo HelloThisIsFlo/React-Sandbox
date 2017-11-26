@@ -1,0 +1,1220 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render correctly 1`] = `
+<MuiThemeProvider>
+  <YearData
+    daysPerMonth={
+      Object {
+        "default": 10,
+        "max": 25,
+        "min": 5,
+      }
+    }
+    hourlyRate={
+      Object {
+        "default": 30,
+        "max": 80,
+        "min": 20,
+      }
+    }
+    hoursPerDay={
+      Object {
+        "default": 6,
+        "max": 10,
+        "min": 2,
+      }
+    }
+    monthsPerYear={
+      Object {
+        "default": 6,
+        "max": 12,
+        "min": 2,
+      }
+    }
+    onNewMoneyMadeInAYear={[Function]}
+  >
+    <div
+      style={
+        Object {
+          "display": "flex",
+          "justifyContent": "space-around",
+          "margin": 5,
+          "width": 150,
+        }
+      }
+    >
+      <ValueSlider
+        mainCaption="h. rate"
+        max={80}
+        min={20}
+        onNewValue={[Function]}
+        value={30}
+        valueCaption="€ / hour"
+      >
+        <div
+          className="value-slider"
+        >
+          <div
+            className="main-caption"
+          >
+            <div>
+              <p
+                key="0"
+              >
+                h
+              </p>
+              <p
+                key="1"
+              >
+                .
+              </p>
+              <p
+                key="2"
+              >
+                 
+              </p>
+              <p
+                key="3"
+              >
+                r
+              </p>
+              <p
+                key="4"
+              >
+                a
+              </p>
+              <p
+                key="5"
+              >
+                t
+              </p>
+              <p
+                key="6"
+              >
+                e
+              </p>
+            </div>
+          </div>
+          <div
+            className="value"
+          >
+            <NumberInput
+              onNewValue={[Function]}
+              value={30}
+            >
+              <input
+                id="debug"
+                inputMode="numeric"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onKeyPress={[Function]}
+                type="text"
+                value="30"
+              />
+            </NumberInput>
+          </div>
+          <div
+            className="value-caption"
+          >
+            <p>
+              € / hour
+            </p>
+          </div>
+          <div
+            className="slider"
+          >
+            <Slider
+              axis="y"
+              disableFocusRipple={false}
+              disabled={false}
+              max={80}
+              min={20}
+              onChange={[Function]}
+              required={true}
+              sliderStyle={
+                Object {
+                  "marginBottom": 10,
+                  "marginTop": 10,
+                }
+              }
+              step={0.01}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": "100%",
+                }
+              }
+              value={30}
+            >
+              <div
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "muiPrepared": true,
+                    "width": "100%",
+                  }
+                }
+              >
+                <div
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchStart={[Function]}
+                  style={
+                    Object {
+                      "cursor": "default",
+                      "height": "100%",
+                      "marginBottom": 10,
+                      "marginTop": 10,
+                      "muiPrepared": true,
+                      "position": "relative",
+                      "touchCallout": "none",
+                      "userSelect": "none",
+                      "width": 18,
+                    }
+                  }
+                >
+                  <div
+                    style={
+                      Object {
+                        "bottom": 0,
+                        "height": "100%",
+                        "left": 8,
+                        "muiPrepared": true,
+                        "position": "absolute",
+                        "width": 2,
+                      }
+                    }
+                  >
+                    <div
+                      style={
+                        Object {
+                          "[object Object]": 0,
+                          "backgroundColor": "#00bcd4",
+                          "bottom": 0,
+                          "directionInvariant": true,
+                          "height": "calc(16.666666666666664%)",
+                          "marginTop": 6,
+                          "muiPrepared": true,
+                          "position": "absolute",
+                          "transition": "margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                          "width": "100%",
+                        }
+                      }
+                    />
+                    <div
+                      style={
+                        Object {
+                          "[object Object]": 0,
+                          "backgroundColor": "#bdbdbd",
+                          "directionInvariant": true,
+                          "height": "calc(83.33333333333334%)",
+                          "marginBottom": 6,
+                          "muiPrepared": true,
+                          "position": "absolute",
+                          "top": 0,
+                          "transition": "margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                          "width": "100%",
+                        }
+                      }
+                    />
+                    <div
+                      style={
+                        Object {
+                          "backgroundClip": "padding-box",
+                          "backgroundColor": "#00bcd4",
+                          "border": "0px solid transparent",
+                          "borderRadius": "50%",
+                          "bottom": "16.666666666666664%",
+                          "boxSizing": "border-box",
+                          "cursor": "pointer",
+                          "directionInvariant": true,
+                          "height": 12,
+                          "left": 0,
+                          "margin": "0 0 0 1px",
+                          "muiPrepared": true,
+                          "outline": "none",
+                          "overflow": "visible",
+                          "pointerEvents": "inherit",
+                          "position": "absolute",
+                          "transform": "translate(-50%, 50%)",
+                          "transition": "background 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, border-color 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, width 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, height 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                          "width": 12,
+                          "zIndex": 1,
+                        }
+                      }
+                      tabIndex={0}
+                    >
+                      <FocusRipple
+                        color="#00bcd4"
+                        innerStyle={
+                          Object {
+                            "height": "300%",
+                            "left": -12,
+                            "top": -12,
+                            "width": "300%",
+                          }
+                        }
+                        show={false}
+                        style={
+                          Object {
+                            "height": 12,
+                            "overflow": "visible",
+                            "width": 12,
+                          }
+                        }
+                      >
+                        <ScaleIn
+                          enterDelay={0}
+                          maxScale={0.85}
+                          style={
+                            Object {
+                              "height": 12,
+                              "left": 0,
+                              "overflow": "visible",
+                              "position": "absolute",
+                              "top": 0,
+                              "width": 12,
+                            }
+                          }
+                        >
+                          <TransitionGroup
+                            childFactory={[Function]}
+                            component="div"
+                            style={
+                              Object {
+                                "height": 12,
+                                "left": 0,
+                                "muiPrepared": true,
+                                "overflow": "visible",
+                                "position": "absolute",
+                                "top": 0,
+                                "width": 12,
+                              }
+                            }
+                          >
+                            <div
+                              style={
+                                Object {
+                                  "height": 12,
+                                  "left": 0,
+                                  "muiPrepared": true,
+                                  "overflow": "visible",
+                                  "position": "absolute",
+                                  "top": 0,
+                                  "width": 12,
+                                }
+                              }
+                            />
+                          </TransitionGroup>
+                        </ScaleIn>
+                      </FocusRipple>
+                    </div>
+                  </div>
+                </div>
+                <input
+                  max={80}
+                  min={20}
+                  required={true}
+                  step={0.01}
+                  type="hidden"
+                  value={30}
+                />
+              </div>
+            </Slider>
+          </div>
+        </div>
+      </ValueSlider>
+      <ValueSlider
+        mainCaption="h. day"
+        max={10}
+        min={2}
+        onNewValue={[Function]}
+        value={6}
+        valueCaption="h / day"
+      >
+        <div
+          className="value-slider"
+        >
+          <div
+            className="main-caption"
+          >
+            <div>
+              <p
+                key="0"
+              >
+                h
+              </p>
+              <p
+                key="1"
+              >
+                .
+              </p>
+              <p
+                key="2"
+              >
+                 
+              </p>
+              <p
+                key="3"
+              >
+                d
+              </p>
+              <p
+                key="4"
+              >
+                a
+              </p>
+              <p
+                key="5"
+              >
+                y
+              </p>
+            </div>
+          </div>
+          <div
+            className="value"
+          >
+            <NumberInput
+              onNewValue={[Function]}
+              value={6}
+            >
+              <input
+                id="debug"
+                inputMode="numeric"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onKeyPress={[Function]}
+                type="text"
+                value="6"
+              />
+            </NumberInput>
+          </div>
+          <div
+            className="value-caption"
+          >
+            <p>
+              h / day
+            </p>
+          </div>
+          <div
+            className="slider"
+          >
+            <Slider
+              axis="y"
+              disableFocusRipple={false}
+              disabled={false}
+              max={10}
+              min={2}
+              onChange={[Function]}
+              required={true}
+              sliderStyle={
+                Object {
+                  "marginBottom": 10,
+                  "marginTop": 10,
+                }
+              }
+              step={0.01}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": "100%",
+                }
+              }
+              value={6}
+            >
+              <div
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "muiPrepared": true,
+                    "width": "100%",
+                  }
+                }
+              >
+                <div
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchStart={[Function]}
+                  style={
+                    Object {
+                      "cursor": "default",
+                      "height": "100%",
+                      "marginBottom": 10,
+                      "marginTop": 10,
+                      "muiPrepared": true,
+                      "position": "relative",
+                      "touchCallout": "none",
+                      "userSelect": "none",
+                      "width": 18,
+                    }
+                  }
+                >
+                  <div
+                    style={
+                      Object {
+                        "bottom": 0,
+                        "height": "100%",
+                        "left": 8,
+                        "muiPrepared": true,
+                        "position": "absolute",
+                        "width": 2,
+                      }
+                    }
+                  >
+                    <div
+                      style={
+                        Object {
+                          "[object Object]": 0,
+                          "backgroundColor": "#00bcd4",
+                          "bottom": 0,
+                          "directionInvariant": true,
+                          "height": "calc(50%)",
+                          "marginTop": 6,
+                          "muiPrepared": true,
+                          "position": "absolute",
+                          "transition": "margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                          "width": "100%",
+                        }
+                      }
+                    />
+                    <div
+                      style={
+                        Object {
+                          "[object Object]": 0,
+                          "backgroundColor": "#bdbdbd",
+                          "directionInvariant": true,
+                          "height": "calc(50%)",
+                          "marginBottom": 6,
+                          "muiPrepared": true,
+                          "position": "absolute",
+                          "top": 0,
+                          "transition": "margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                          "width": "100%",
+                        }
+                      }
+                    />
+                    <div
+                      style={
+                        Object {
+                          "backgroundClip": "padding-box",
+                          "backgroundColor": "#00bcd4",
+                          "border": "0px solid transparent",
+                          "borderRadius": "50%",
+                          "bottom": "50%",
+                          "boxSizing": "border-box",
+                          "cursor": "pointer",
+                          "directionInvariant": true,
+                          "height": 12,
+                          "left": 0,
+                          "margin": "0 0 0 1px",
+                          "muiPrepared": true,
+                          "outline": "none",
+                          "overflow": "visible",
+                          "pointerEvents": "inherit",
+                          "position": "absolute",
+                          "transform": "translate(-50%, 50%)",
+                          "transition": "background 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, border-color 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, width 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, height 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                          "width": 12,
+                          "zIndex": 1,
+                        }
+                      }
+                      tabIndex={0}
+                    >
+                      <FocusRipple
+                        color="#00bcd4"
+                        innerStyle={
+                          Object {
+                            "height": "300%",
+                            "left": -12,
+                            "top": -12,
+                            "width": "300%",
+                          }
+                        }
+                        show={false}
+                        style={
+                          Object {
+                            "height": 12,
+                            "overflow": "visible",
+                            "width": 12,
+                          }
+                        }
+                      >
+                        <ScaleIn
+                          enterDelay={0}
+                          maxScale={0.85}
+                          style={
+                            Object {
+                              "height": 12,
+                              "left": 0,
+                              "overflow": "visible",
+                              "position": "absolute",
+                              "top": 0,
+                              "width": 12,
+                            }
+                          }
+                        >
+                          <TransitionGroup
+                            childFactory={[Function]}
+                            component="div"
+                            style={
+                              Object {
+                                "height": 12,
+                                "left": 0,
+                                "muiPrepared": true,
+                                "overflow": "visible",
+                                "position": "absolute",
+                                "top": 0,
+                                "width": 12,
+                              }
+                            }
+                          >
+                            <div
+                              style={
+                                Object {
+                                  "height": 12,
+                                  "left": 0,
+                                  "muiPrepared": true,
+                                  "overflow": "visible",
+                                  "position": "absolute",
+                                  "top": 0,
+                                  "width": 12,
+                                }
+                              }
+                            />
+                          </TransitionGroup>
+                        </ScaleIn>
+                      </FocusRipple>
+                    </div>
+                  </div>
+                </div>
+                <input
+                  max={10}
+                  min={2}
+                  required={true}
+                  step={0.01}
+                  type="hidden"
+                  value={6}
+                />
+              </div>
+            </Slider>
+          </div>
+        </div>
+      </ValueSlider>
+      <ValueSlider
+        mainCaption="d. month"
+        max={25}
+        min={5}
+        onNewValue={[Function]}
+        value={10}
+        valueCaption="d / month"
+      >
+        <div
+          className="value-slider"
+        >
+          <div
+            className="main-caption"
+          >
+            <div>
+              <p
+                key="0"
+              >
+                d
+              </p>
+              <p
+                key="1"
+              >
+                .
+              </p>
+              <p
+                key="2"
+              >
+                 
+              </p>
+              <p
+                key="3"
+              >
+                m
+              </p>
+              <p
+                key="4"
+              >
+                o
+              </p>
+              <p
+                key="5"
+              >
+                n
+              </p>
+              <p
+                key="6"
+              >
+                t
+              </p>
+              <p
+                key="7"
+              >
+                h
+              </p>
+            </div>
+          </div>
+          <div
+            className="value"
+          >
+            <NumberInput
+              onNewValue={[Function]}
+              value={10}
+            >
+              <input
+                id="debug"
+                inputMode="numeric"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onKeyPress={[Function]}
+                type="text"
+                value="10"
+              />
+            </NumberInput>
+          </div>
+          <div
+            className="value-caption"
+          >
+            <p>
+              d / month
+            </p>
+          </div>
+          <div
+            className="slider"
+          >
+            <Slider
+              axis="y"
+              disableFocusRipple={false}
+              disabled={false}
+              max={25}
+              min={5}
+              onChange={[Function]}
+              required={true}
+              sliderStyle={
+                Object {
+                  "marginBottom": 10,
+                  "marginTop": 10,
+                }
+              }
+              step={0.01}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": "100%",
+                }
+              }
+              value={10}
+            >
+              <div
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "muiPrepared": true,
+                    "width": "100%",
+                  }
+                }
+              >
+                <div
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchStart={[Function]}
+                  style={
+                    Object {
+                      "cursor": "default",
+                      "height": "100%",
+                      "marginBottom": 10,
+                      "marginTop": 10,
+                      "muiPrepared": true,
+                      "position": "relative",
+                      "touchCallout": "none",
+                      "userSelect": "none",
+                      "width": 18,
+                    }
+                  }
+                >
+                  <div
+                    style={
+                      Object {
+                        "bottom": 0,
+                        "height": "100%",
+                        "left": 8,
+                        "muiPrepared": true,
+                        "position": "absolute",
+                        "width": 2,
+                      }
+                    }
+                  >
+                    <div
+                      style={
+                        Object {
+                          "[object Object]": 0,
+                          "backgroundColor": "#00bcd4",
+                          "bottom": 0,
+                          "directionInvariant": true,
+                          "height": "calc(25%)",
+                          "marginTop": 6,
+                          "muiPrepared": true,
+                          "position": "absolute",
+                          "transition": "margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                          "width": "100%",
+                        }
+                      }
+                    />
+                    <div
+                      style={
+                        Object {
+                          "[object Object]": 0,
+                          "backgroundColor": "#bdbdbd",
+                          "directionInvariant": true,
+                          "height": "calc(75%)",
+                          "marginBottom": 6,
+                          "muiPrepared": true,
+                          "position": "absolute",
+                          "top": 0,
+                          "transition": "margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                          "width": "100%",
+                        }
+                      }
+                    />
+                    <div
+                      style={
+                        Object {
+                          "backgroundClip": "padding-box",
+                          "backgroundColor": "#00bcd4",
+                          "border": "0px solid transparent",
+                          "borderRadius": "50%",
+                          "bottom": "25%",
+                          "boxSizing": "border-box",
+                          "cursor": "pointer",
+                          "directionInvariant": true,
+                          "height": 12,
+                          "left": 0,
+                          "margin": "0 0 0 1px",
+                          "muiPrepared": true,
+                          "outline": "none",
+                          "overflow": "visible",
+                          "pointerEvents": "inherit",
+                          "position": "absolute",
+                          "transform": "translate(-50%, 50%)",
+                          "transition": "background 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, border-color 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, width 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, height 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                          "width": 12,
+                          "zIndex": 1,
+                        }
+                      }
+                      tabIndex={0}
+                    >
+                      <FocusRipple
+                        color="#00bcd4"
+                        innerStyle={
+                          Object {
+                            "height": "300%",
+                            "left": -12,
+                            "top": -12,
+                            "width": "300%",
+                          }
+                        }
+                        show={false}
+                        style={
+                          Object {
+                            "height": 12,
+                            "overflow": "visible",
+                            "width": 12,
+                          }
+                        }
+                      >
+                        <ScaleIn
+                          enterDelay={0}
+                          maxScale={0.85}
+                          style={
+                            Object {
+                              "height": 12,
+                              "left": 0,
+                              "overflow": "visible",
+                              "position": "absolute",
+                              "top": 0,
+                              "width": 12,
+                            }
+                          }
+                        >
+                          <TransitionGroup
+                            childFactory={[Function]}
+                            component="div"
+                            style={
+                              Object {
+                                "height": 12,
+                                "left": 0,
+                                "muiPrepared": true,
+                                "overflow": "visible",
+                                "position": "absolute",
+                                "top": 0,
+                                "width": 12,
+                              }
+                            }
+                          >
+                            <div
+                              style={
+                                Object {
+                                  "height": 12,
+                                  "left": 0,
+                                  "muiPrepared": true,
+                                  "overflow": "visible",
+                                  "position": "absolute",
+                                  "top": 0,
+                                  "width": 12,
+                                }
+                              }
+                            />
+                          </TransitionGroup>
+                        </ScaleIn>
+                      </FocusRipple>
+                    </div>
+                  </div>
+                </div>
+                <input
+                  max={25}
+                  min={5}
+                  required={true}
+                  step={0.01}
+                  type="hidden"
+                  value={10}
+                />
+              </div>
+            </Slider>
+          </div>
+        </div>
+      </ValueSlider>
+      <ValueSlider
+        mainCaption="months"
+        max={12}
+        min={2}
+        onNewValue={[Function]}
+        value={6}
+        valueCaption="m worked"
+      >
+        <div
+          className="value-slider"
+        >
+          <div
+            className="main-caption"
+          >
+            <div>
+              <p
+                key="0"
+              >
+                m
+              </p>
+              <p
+                key="1"
+              >
+                o
+              </p>
+              <p
+                key="2"
+              >
+                n
+              </p>
+              <p
+                key="3"
+              >
+                t
+              </p>
+              <p
+                key="4"
+              >
+                h
+              </p>
+              <p
+                key="5"
+              >
+                s
+              </p>
+            </div>
+          </div>
+          <div
+            className="value"
+          >
+            <NumberInput
+              onNewValue={[Function]}
+              value={6}
+            >
+              <input
+                id="debug"
+                inputMode="numeric"
+                onBlur={[Function]}
+                onChange={[Function]}
+                onKeyPress={[Function]}
+                type="text"
+                value="6"
+              />
+            </NumberInput>
+          </div>
+          <div
+            className="value-caption"
+          >
+            <p>
+              m worked
+            </p>
+          </div>
+          <div
+            className="slider"
+          >
+            <Slider
+              axis="y"
+              disableFocusRipple={false}
+              disabled={false}
+              max={12}
+              min={2}
+              onChange={[Function]}
+              required={true}
+              sliderStyle={
+                Object {
+                  "marginBottom": 10,
+                  "marginTop": 10,
+                }
+              }
+              step={0.01}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "display": "flex",
+                  "flexDirection": "column",
+                  "height": "100%",
+                  "justifyContent": "center",
+                  "width": "100%",
+                }
+              }
+              value={6}
+            >
+              <div
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "flexDirection": "column",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "muiPrepared": true,
+                    "width": "100%",
+                  }
+                }
+              >
+                <div
+                  onBlur={[Function]}
+                  onFocus={[Function]}
+                  onKeyDown={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseEnter={[Function]}
+                  onMouseLeave={[Function]}
+                  onMouseUp={[Function]}
+                  onTouchStart={[Function]}
+                  style={
+                    Object {
+                      "cursor": "default",
+                      "height": "100%",
+                      "marginBottom": 10,
+                      "marginTop": 10,
+                      "muiPrepared": true,
+                      "position": "relative",
+                      "touchCallout": "none",
+                      "userSelect": "none",
+                      "width": 18,
+                    }
+                  }
+                >
+                  <div
+                    style={
+                      Object {
+                        "bottom": 0,
+                        "height": "100%",
+                        "left": 8,
+                        "muiPrepared": true,
+                        "position": "absolute",
+                        "width": 2,
+                      }
+                    }
+                  >
+                    <div
+                      style={
+                        Object {
+                          "[object Object]": 0,
+                          "backgroundColor": "#00bcd4",
+                          "bottom": 0,
+                          "directionInvariant": true,
+                          "height": "calc(40%)",
+                          "marginTop": 6,
+                          "muiPrepared": true,
+                          "position": "absolute",
+                          "transition": "margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                          "width": "100%",
+                        }
+                      }
+                    />
+                    <div
+                      style={
+                        Object {
+                          "[object Object]": 0,
+                          "backgroundColor": "#bdbdbd",
+                          "directionInvariant": true,
+                          "height": "calc(60%)",
+                          "marginBottom": 6,
+                          "muiPrepared": true,
+                          "position": "absolute",
+                          "top": 0,
+                          "transition": "margin 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                          "width": "100%",
+                        }
+                      }
+                    />
+                    <div
+                      style={
+                        Object {
+                          "backgroundClip": "padding-box",
+                          "backgroundColor": "#00bcd4",
+                          "border": "0px solid transparent",
+                          "borderRadius": "50%",
+                          "bottom": "40%",
+                          "boxSizing": "border-box",
+                          "cursor": "pointer",
+                          "directionInvariant": true,
+                          "height": 12,
+                          "left": 0,
+                          "margin": "0 0 0 1px",
+                          "muiPrepared": true,
+                          "outline": "none",
+                          "overflow": "visible",
+                          "pointerEvents": "inherit",
+                          "position": "absolute",
+                          "transform": "translate(-50%, 50%)",
+                          "transition": "background 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, border-color 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, width 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, height 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+                          "width": 12,
+                          "zIndex": 1,
+                        }
+                      }
+                      tabIndex={0}
+                    >
+                      <FocusRipple
+                        color="#00bcd4"
+                        innerStyle={
+                          Object {
+                            "height": "300%",
+                            "left": -12,
+                            "top": -12,
+                            "width": "300%",
+                          }
+                        }
+                        show={false}
+                        style={
+                          Object {
+                            "height": 12,
+                            "overflow": "visible",
+                            "width": 12,
+                          }
+                        }
+                      >
+                        <ScaleIn
+                          enterDelay={0}
+                          maxScale={0.85}
+                          style={
+                            Object {
+                              "height": 12,
+                              "left": 0,
+                              "overflow": "visible",
+                              "position": "absolute",
+                              "top": 0,
+                              "width": 12,
+                            }
+                          }
+                        >
+                          <TransitionGroup
+                            childFactory={[Function]}
+                            component="div"
+                            style={
+                              Object {
+                                "height": 12,
+                                "left": 0,
+                                "muiPrepared": true,
+                                "overflow": "visible",
+                                "position": "absolute",
+                                "top": 0,
+                                "width": 12,
+                              }
+                            }
+                          >
+                            <div
+                              style={
+                                Object {
+                                  "height": 12,
+                                  "left": 0,
+                                  "muiPrepared": true,
+                                  "overflow": "visible",
+                                  "position": "absolute",
+                                  "top": 0,
+                                  "width": 12,
+                                }
+                              }
+                            />
+                          </TransitionGroup>
+                        </ScaleIn>
+                      </FocusRipple>
+                    </div>
+                  </div>
+                </div>
+                <input
+                  max={12}
+                  min={2}
+                  required={true}
+                  step={0.01}
+                  type="hidden"
+                  value={6}
+                />
+              </div>
+            </Slider>
+          </div>
+        </div>
+      </ValueSlider>
+    </div>
+  </YearData>
+</MuiThemeProvider>
+`;
