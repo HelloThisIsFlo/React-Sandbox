@@ -1,13 +1,11 @@
 import * as React from 'react';
 import './Sandbox.css';
-import Hello from '../helloworld/Hello';
 import RaisedButton from 'material-ui/RaisedButton';
 import PlotlyChart from 'react-plotlyjs-ts';
 import * as update from 'immutability-helper';
-import ValueSlider from '../valueslider/ValueSlider';
-import NumberInput from '../numberinput/NumberInput';
+import ValueSlider from './components/valueslider/ValueSlider';
+import NumberInput from './components/numberinput/NumberInput';
 import Paper from 'material-ui/Paper';
-import MagicLink from '../tutorialremove/MagicLink';
 
 type MinMaxDefault = {
     min: number;
@@ -96,7 +94,8 @@ export default class Sandbox extends React.Component<SandboxProps, SandboxState>
 
         // TODO: Put this in a React Component that exposes the Money made in a year !! :D :D 
         const yearControl = (
-            <Paper style={{ width: 150, margin: 5, display: 'flex', justifyContent: 'space-around' }}>
+            // <Paper style={{ width: 150, margin: 5, display: 'flex', justifyContent: 'space-around' }}>
+            <div style={{ width: 150, margin: 5, display: 'flex', justifyContent: 'space-around' }}>
                 <ValueSlider
                     mainCaption="h. rate"
                     valueCaption="&euro; / hour"
@@ -129,36 +128,40 @@ export default class Sandbox extends React.Component<SandboxProps, SandboxState>
                     onNewValue={this.handleNewMonthsPerYear}
                     value={this.state.monthsPerYear}
                 />
-            </Paper>
+                {/* </Paper> */}
+            </div>
+        );
+
+        const verticalSeparator = (
+            // <div style="border-left:1px solid #000;height:500px"/>
+            <div
+                style={{
+                    borderLeft: '1px solid #D5D5D5',
+                    height: 'auto',
+                    margin: 10,
+                }}
+            />
         );
 
         return (
             <div style={{ margin: 50 }}>
-                <Paper>
-                    <MagicLink
-                        href="https://floriankempenich.com"
-                    >
-                        Hello this is a link
-                    </MagicLink>
-                </Paper>
                 <Paper>
                     <p> hourlyRate: {this.state.hourlyRate} </p>
                     <p> hoursPerDay: {this.state.hoursPerDay} </p>
                     <p> daysPerMonth: {this.state.daysPerMonth} </p>
                     <p> monthsPerYear: {this.state.monthsPerYear} </p>
                 </Paper>
-                <div style={{ width: 'auto', display: 'flex', justifyContent: 'space-around' }}>
+                <Paper style={{ width: 'auto', display: 'flex', justifyContent: 'space-around' }}>
                     {yearControl}
+                    {verticalSeparator}
                     {yearControl}
+                    {verticalSeparator}
                     {yearControl}
+                    {verticalSeparator}
                     {yearControl}
-                {/* </div>
+                    {/* </div>
                 <div style={{ width: 'auto', display: 'flex', justifyContent: 'space-around', marginTop: 50 }}> */}
-                    {yearControl}
-                    {yearControl}
-                    {yearControl}
-                    {yearControl}
-                </div>
+                </Paper>
                 <div style={{ marginTop: 50 }} >
                     <NumberInput
                         onNewValue={(newVal) => {

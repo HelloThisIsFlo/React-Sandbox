@@ -1,7 +1,7 @@
 import 'normalize.css';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Sandbox from './presentation/sandbox/Sandbox';
+import Sandbox from './presentation/Sandbox';
 import registerServiceWorker from './registerServiceWorker';
 
 // Temp fix for 'material-ui'
