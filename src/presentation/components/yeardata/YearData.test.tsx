@@ -29,61 +29,92 @@ const MOCK_CONFIG: Config = {
     }
 };
 
+function getGrossAmountElement(yearData: ShallowWrapper) {
+    return yearData.childAt(0);
+}
 type SliderName = 'hourlyRate' | 'hoursPerDay' | 'daysPerMonth' | 'monthsPerYear';
 function getValueSlider(yearData: ShallowWrapper, name: SliderName): ShallowWrapper {
     const position = {
-        hourlyRate: 0,
-        hoursPerDay: 1,
-        daysPerMonth: 2,
-        monthsPerYear: 3
+        hourlyRate: 1,
+        hoursPerDay: 2,
+        daysPerMonth: 3,
+        monthsPerYear: 4
     };
     return yearData.childAt(position[name]);
+}
+function calculateGrossMoneyMade(hourly: number, hPDay: number, dPerMonth: number, mPYear: number) {
+    return hourly * hPDay * dPerMonth * mPYear;
 }
 
 describe('YearData', () => {
     const moneyMadeCallback = jest.fn();
+    beforeEach(moneyMadeCallback.mockClear);
+
     const yearDataJsx = (
         <YearData
             onNewMoneyMadeInAYear={moneyMadeCallback}
-            hourlyRate={MOCK_CONFIG.hourlyRate}
-            hoursPerDay={MOCK_CONFIG.hoursPerDay}
-            daysPerMonth={MOCK_CONFIG.daysPerMonth}
-            monthsPerYear={MOCK_CONFIG.monthsPerYear}
+            hourlyRateConfig={MOCK_CONFIG.hourlyRate}
+            hoursPerDayConfig={MOCK_CONFIG.hoursPerDay}
+            daysPerMonthConfig={MOCK_CONFIG.daysPerMonth}
+            monthsPerYearConfig={MOCK_CONFIG.monthsPerYear}
         />
     );
-    beforeEach(moneyMadeCallback.mockClear);
+    let yearDataWrapper: ShallowWrapper = shallow(yearDataJsx);
 
     describe('General layout', () => {
-        it('should render correctly', () => {
-            const wrapper = mount((
+        it.skip('should render correctly', () => {
+            // Mui wrapper needed if rendering the entire component 
+            // (since some sub components are from 'Material UI' library)
+            const wrapperWithMaterialUIWrapper = mount((
                 <MuiThemeProvider>
                     {yearDataJsx}
                 </MuiThemeProvider>
             ));
-            expect(toJson(wrapper)).toMatchSnapshot();
+            expect(toJson(wrapperWithMaterialUIWrapper)).toMatchSnapshot();
         });
 
         it('has the sliders in the correct order', () => {
-            const wrapper = shallow(yearDataJsx);
-            const hourlyRateSlider = getValueSlider(wrapper, 'hourlyRate');
-            const hoursPerDaySlider = getValueSlider(wrapper, 'hoursPerDay');
-            const daysPerMonthSlider = getValueSlider(wrapper, 'daysPerMonth');
-            const monthsPerYearSlider = getValueSlider(wrapper, 'monthsPerYear');
+            const hourlyRateSlider = getValueSlider(yearDataWrapper, 'hourlyRate');
+            const hoursPerDaySlider = getValueSlider(yearDataWrapper, 'hoursPerDay');
+            const daysPerMonthSlider = getValueSlider(yearDataWrapper, 'daysPerMonth');
+            const monthsPerYearSlider = getValueSlider(yearDataWrapper, 'monthsPerYear');
 
-            ensureCaptionOf(hourlyRateSlider).contains('h. rate');
-            ensureCaptionOf(hoursPerDaySlider).contains('h. day');
-            ensureCaptionOf(daysPerMonthSlider).contains('d. month');
-            ensureCaptionOf(monthsPerYearSlider).contains('month');
+            expectCaptionOf(hourlyRateSlider).toContain('h. rate');
+            expectCaptionOf(hoursPerDaySlider).toContain('h. day');
+            expectCaptionOf(daysPerMonthSlider).toContain('d. month');
+            expectCaptionOf(monthsPerYearSlider).toContain('month');
 
-            function ensureCaptionOf(valueSlider: ShallowWrapper) {
-                const mainCaption =
-                    (valueSlider.props() as ValueSliderProps).mainCaption;
-                return {
-                    contains: (expected: string) => {
-                        expect(mainCaption).toContain(expected);
-                    }
-                };
+            function expectCaptionOf(valueSlider: ShallowWrapper) {
+                return expect((valueSlider.props() as ValueSliderProps).mainCaption);
             }
+        });
+
+        it('displays the defaults values', () => {
+            const hourlyRateSlider = getValueSlider(yearDataWrapper, 'hourlyRate');
+            const hoursPerDaySlider = getValueSlider(yearDataWrapper, 'hoursPerDay');
+            const daysPerMonthSlider = getValueSlider(yearDataWrapper, 'daysPerMonth');
+            const monthsPerYearSlider = getValueSlider(yearDataWrapper, 'monthsPerYear');
+
+            expectValueOf(hourlyRateSlider).toEqual(MOCK_CONFIG.hourlyRate.default);
+            expectValueOf(hoursPerDaySlider).toEqual(MOCK_CONFIG.hoursPerDay.default);
+            expectValueOf(daysPerMonthSlider).toEqual(MOCK_CONFIG.daysPerMonth.default);
+            expectValueOf(monthsPerYearSlider).toEqual(MOCK_CONFIG.monthsPerYear.default);
+
+            function expectValueOf(valueSlider: ShallowWrapper) {
+                return expect((valueSlider.props() as ValueSliderProps).value);
+            }
+        });
+
+        it('displays the default Gross Money Made', () => {
+            const defaultGross = calculateGrossMoneyMade(
+                MOCK_CONFIG.hourlyRate.default,
+                MOCK_CONFIG.hoursPerDay.default,
+                MOCK_CONFIG.daysPerMonth.default,
+                MOCK_CONFIG.monthsPerYear.default
+            );
+
+            expect(getGrossAmountElement(yearDataWrapper).text())
+                .toContain(defaultGross);
         });
 
     });

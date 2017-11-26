@@ -39,10 +39,10 @@ export default class Sandbox extends React.Component<SandboxProps, SandboxState>
                 <Paper style={{ width: 'auto', display: 'flex', justifyContent: 'space-around' }}>
                     <YearData 
                         onNewMoneyMadeInAYear={this.handleNewMoneyMadeYear1}
-                        hourlyRate={CONFIG.hourlyRate}
-                        hoursPerDay={CONFIG.hoursPerDay}
-                        daysPerMonth={CONFIG.daysPerMonth}
-                        monthsPerYear={CONFIG.monthsPerYear}
+                        hourlyRateConfig={CONFIG.hourlyRate}
+                        hoursPerDayConfig={CONFIG.hoursPerDay}
+                        daysPerMonthConfig={CONFIG.daysPerMonth}
+                        monthsPerYearConfig={CONFIG.monthsPerYear}
                     />
                 </Paper>
             </div>
