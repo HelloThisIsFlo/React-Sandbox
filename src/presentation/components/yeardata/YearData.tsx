@@ -12,6 +12,7 @@ export type YearDataProps = {
     monthsPerYearConfig: ValueConfig;
 };
 export interface YearDataState extends YearDataProps {
+    grossMade: number;
     hourlyRate: number;
     hoursPerDay: number;
     daysPerMonth: number;
@@ -28,34 +29,33 @@ export default class YearData extends React.Component<YearDataProps, YearDataSta
     constructor(props: YearDataProps) {
         super(props);
 
-        const initValues = {
+        let initValues = {
             hourlyRate: props.hourlyRateConfig.default,
             hoursPerDay: props.hoursPerDayConfig.default,
             daysPerMonth: props.daysPerMonthConfig.default,
-            monthsPerYear: props.monthsPerYearConfig.default
+            monthsPerYear: props.monthsPerYearConfig.default,
         };
 
         this.state = update(props, { $merge: initValues });
+        this.state = update(this.state, {
+            $merge: {grossMade: this.calculateGrossAmountMade({})}
+        });
 
-        this.handleNewHourlyRate = this.handleNewHourlyRate.bind(this);
-        this.handleNewHoursPerDay = this.handleNewHoursPerDay.bind(this);
-        this.handleNewDaysPerMonth = this.handleNewDaysPerMonth.bind(this);
-        this.handleNewMonthsPerYear = this.handleNewMonthsPerYear.bind(this);
+        this.handleNewValue = this.handleNewValue.bind(this);
     }
 
     render() {
-        // Paper
         return (
             <div style={style.root}>
                 <div>
-                    <p>10800</p>
+                    <p>{this.state.grossMade}</p>
                 </div>
                 <ValueSlider
                     mainCaption={captions.hourlyRate.mainCaption}
                     valueCaption={captions.hourlyRate.valueCaption}
                     min={this.state.hourlyRateConfig.min}
                     max={this.state.hourlyRateConfig.max}
-                    onNewValue={this.handleNewHourlyRate}
+                    onNewValue={(val) => this.handleNewValue({hourlyRate: val})}
                     value={this.state.hourlyRate}
                 />
                 <ValueSlider
@@ -63,7 +63,7 @@ export default class YearData extends React.Component<YearDataProps, YearDataSta
                     valueCaption={captions.hoursPerDay.valueCaption}
                     min={this.state.hoursPerDayConfig.min}
                     max={this.state.hoursPerDayConfig.max}
-                    onNewValue={this.handleNewHoursPerDay}
+                    onNewValue={(val) => this.handleNewValue({hoursPerDay: val})}
                     value={this.state.hoursPerDay}
                 />
                 <ValueSlider
@@ -71,7 +71,7 @@ export default class YearData extends React.Component<YearDataProps, YearDataSta
                     valueCaption={captions.daysPerMonth.valueCaption}
                     min={this.state.daysPerMonthConfig.min}
                     max={this.state.daysPerMonthConfig.max}
-                    onNewValue={this.handleNewDaysPerMonth}
+                    onNewValue={(val) => this.handleNewValue({daysPerMonth: val})}
                     value={this.state.daysPerMonth}
                 />
                 <ValueSlider
@@ -79,7 +79,7 @@ export default class YearData extends React.Component<YearDataProps, YearDataSta
                     valueCaption={captions.monthsPerYear.valueCaption}
                     min={this.state.monthsPerYearConfig.min}
                     max={this.state.monthsPerYearConfig.max}
-                    onNewValue={this.handleNewMonthsPerYear}
+                    onNewValue={(val) => this.handleNewValue({monthsPerYear: val})}
                     value={this.state.monthsPerYear}
                 />
             </div>
@@ -87,28 +87,19 @@ export default class YearData extends React.Component<YearDataProps, YearDataSta
         );
     }
 
-    private handleNewHourlyRate(newHourlyRate: number) {
-        console.log('Warning: For now doing nothing here, only setting state');
-        this.setState(update(this.state, { $merge: { currentHourlyRate: newHourlyRate } }));
+    private handleNewValue(newVal: GrossAmountMadeParams) {
+        let newState = update(this.state, {$merge: newVal});
+        newState.grossMade = this.calculateGrossAmountMade(newVal);
+
+        // Call callback
+        this.state.onNewMoneyMadeInAYear(newState.grossMade);
+
+        this.setState(newState);
     }
 
-    private handleNewHoursPerDay(newHoursPerDay: number) {
-        console.log('Warning: For now doing nothing here, only setting state');
-        this.setState(update(this.state, { $merge: { currentHoursPerDay: newHoursPerDay } }));
-    }
-
-    private handleNewDaysPerMonth(newDaysPerMonth: number) {
-        console.log('Warning: For now doing nothing here, only setting state');
-        this.setState(update(this.state, { $merge: { currentDaysPerMonth: newDaysPerMonth } }));
-    }
-
-    private handleNewMonthsPerYear(newMonthsPerYear: number) {
-        console.log('Warning: For now doing nothing here, only setting state');
-        this.setState(update(this.state, { $merge: { currentMonthsPerYear: newMonthsPerYear } }));
-    }
-
-    private calculateNewGrossAmountMade(newValues: GrossAmountMadeParams) {
-        // TODO add test
+    private calculateGrossAmountMade(overrides: GrossAmountMadeParams): number {
+        const values = update(this.state || {}, {$merge: overrides});
+        return values.hourlyRate * values.hoursPerDay * values.daysPerMonth * values.monthsPerYear;
     }
 
 }

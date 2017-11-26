@@ -42,8 +42,18 @@ function getValueSlider(yearData: ShallowWrapper, name: SliderName): ShallowWrap
     };
     return yearData.childAt(position[name]);
 }
-function calculateGrossMoneyMade(hourly: number, hPDay: number, dPerMonth: number, mPYear: number) {
-    return hourly * hPDay * dPerMonth * mPYear;
+
+type GrossAmountMadeParams = {
+    hourlyRate?: number;
+    hoursPerDay?: number;
+    daysPerMonth?: number;
+    monthsPerYear?: number;
+};
+function calculateDefaultGrossMoneyMade(override: GrossAmountMadeParams) {
+    return (override.hourlyRate || MOCK_CONFIG.hourlyRate.default)
+        * (override.hoursPerDay || MOCK_CONFIG.hoursPerDay.default)
+        * (override.daysPerMonth || MOCK_CONFIG.daysPerMonth.default)
+        * (override.monthsPerYear || MOCK_CONFIG.monthsPerYear.default);
 }
 
 describe('YearData', () => {
@@ -106,12 +116,7 @@ describe('YearData', () => {
         });
 
         it('displays the default Gross Money Made', () => {
-            const defaultGross = calculateGrossMoneyMade(
-                MOCK_CONFIG.hourlyRate.default,
-                MOCK_CONFIG.hoursPerDay.default,
-                MOCK_CONFIG.daysPerMonth.default,
-                MOCK_CONFIG.monthsPerYear.default
-            );
+            const defaultGross = calculateDefaultGrossMoneyMade({});
 
             expect(getGrossAmountElement(yearDataWrapper).text())
                 .toContain(defaultGross);
@@ -121,21 +126,109 @@ describe('YearData', () => {
 
     describe('Calculate Gross Money Made in Year', () => {
 
-        it.skip('test', () => {
-            // const wrapper = shallow(yearDataJsx);
+        describe('On new Hourly Rate', () => {
+            let newHourlyRate;
+            let expectedGross: number;
 
-            // console.log(wrapper.childAt(0).debug());
-            // // wrapper.props().onNewMoneyMadeInAYear(44);
+            beforeEach(() => {
+                // Given: A new hourly rate
+                newHourlyRate = 85;
+                expectedGross = calculateDefaultGrossMoneyMade({ hourlyRate: newHourlyRate });
 
-            // // wrapper.state().onNewMoneyMadeInAYear(44);
+                // When: New rate is set on the Slider
+                const hourlyRateSlider = getValueSlider(yearDataWrapper, 'hourlyRate');
+                const newHRateCallback = (hourlyRateSlider.props() as ValueSliderProps).onNewValue;
+                if (newHRateCallback) { newHRateCallback(newHourlyRate); }
+                // Notify the ShallowWrapper that something changed
+                yearDataWrapper.update();
+            });
 
-            // let thing;
-            // thing = wrapper.childAt(0).props().onNewValue(44);
+            it('should display the new value', () => {
+                const hourlyRateSlider = getValueSlider(yearDataWrapper, 'hourlyRate');
 
-            // console.log(thing);
+                expectValueOf(hourlyRateSlider).toEqual(85);
 
-            // console.log(moneyMadeCallback.mock);
+                function expectValueOf(valueSlider: ShallowWrapper) {
+                    return expect((valueSlider.props() as ValueSliderProps).value);
+                }
+            });
 
+            it('should display the new Gross Money Made', () => {
+                expect(getGrossAmountElement(yearDataWrapper).text())
+                    .toContain(expectedGross);
+            });
+
+            it('should call the callback with the new Gross Money Made', () => {
+                const calls = moneyMadeCallback.mock.calls;
+                expect(calls.length).toBeGreaterThanOrEqual(1);
+
+                const lastCall = calls[calls.length - 1];
+                const lastCallValue = lastCall[0];
+                expect(lastCallValue).toEqual(expectedGross);
+            });
+        });
+
+        describe('On new Values', () => {
+            let newHourlyRate;
+            let newHoursPerDay;
+            let newDaysPerMonth;
+            let newMonthsPerYear;
+            let expectedGross: number;
+
+            beforeEach(() => {
+                // Given: A new hourly rate
+                newHourlyRate = 77;
+                newHoursPerDay = 8;
+                newDaysPerMonth = 11;
+                newMonthsPerYear = 9;
+
+                expectedGross = 77 * 8 * 11 * 9;
+
+                // When: New values are set on the Slider
+                function simulateNewValue(slider: SliderName, val: number) {
+                    const sliderWrapper = getValueSlider(yearDataWrapper, slider);
+                    const newValCallback =
+                        (sliderWrapper.props() as ValueSliderProps).onNewValue;
+                    if (newValCallback) { newValCallback(val); }
+                }
+                simulateNewValue('hourlyRate', 77);
+                simulateNewValue('hoursPerDay', 8);
+                simulateNewValue('daysPerMonth', 11);
+                simulateNewValue('monthsPerYear', 9);
+
+                // Notify the ShallowWrapper that something changed
+                yearDataWrapper.update();
+            });
+
+            it('should display the new values', () => {
+                const hourlyRateSlider = getValueSlider(yearDataWrapper, 'hourlyRate');
+                const hoursPerDaySlider = getValueSlider(yearDataWrapper, 'hoursPerDay');
+                const daysPerMonthSlider = getValueSlider(yearDataWrapper, 'daysPerMonth');
+                const monthsPerYearSlider = getValueSlider(yearDataWrapper, 'monthsPerYear');
+
+                expectValueOf(hourlyRateSlider).toEqual(77);
+                expectValueOf(hoursPerDaySlider).toEqual(8);
+                expectValueOf(daysPerMonthSlider).toEqual(11);
+                expectValueOf(monthsPerYearSlider).toEqual(9);
+
+                function expectValueOf(valueSlider: ShallowWrapper) {
+                    return expect((valueSlider.props() as ValueSliderProps).value);
+                }
+            });
+
+            it('should display the new Gross Money Made', () => {
+                expect(getGrossAmountElement(yearDataWrapper).text())
+                    .toContain(expectedGross);
+            });
+
+            it('should call the callback with the new Gross Money Made', () => {
+                const calls = moneyMadeCallback.mock.calls;
+                expect(calls.length).toBeGreaterThanOrEqual(1);
+
+                const lastCall = calls[calls.length - 1];
+                const lastCallValue = lastCall[0];
+                expect(lastCallValue).toEqual(expectedGross);
+            });
         });
     });
 
